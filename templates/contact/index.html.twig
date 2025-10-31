@@ -1,0 +1,276 @@
+{% extends 'base.html.twig' %}
+{% block title %}Contact – DP Formation{% endblock %}
+
+{# ——— Config ——— #}
+{% set HERO_REMOTE = asset('images/contact-hero.png') %}
+{% set HERO_LOCAL  = asset('images/contact-hero.png') %}
+{% set MAP_QUERY   = 'DP+Formation,+37+Rue+Exemple,+62000+Arras' %}
+{% set MAP_EMBED   = 'https://www.google.com/maps?q=' ~ MAP_QUERY ~ '&output=embed' %}
+{% set MAP_LINK    = 'https://www.google.com/maps/search/?api=1&query=' ~ MAP_QUERY %}
+
+{% block meta %}
+  <link rel="preload" as="image" href="{{ HERO_REMOTE }}">
+{% endblock %}
+
+{% block body %}
+{# ================= HERO (parallax 60vh) — fond fusion vers #ECF5FF ================= #}
+<section id="heroScroll" class="relative min-h-[60vh]">
+  <div id="heroViewport" class="sticky top-0 h-[60vh] overflow-hidden">
+    <img id="heroImg"
+         src="{{ HERO_REMOTE }}"
+         alt="Contact – DP Formation"
+         class="absolute inset-0 h-full w-full object-cover"
+         style="object-position:50% 0%; transition:object-position 180ms ease-out; will-change:object-position;"
+         onerror="this.onerror=null;this.src='{{ HERO_LOCAL }}';"
+         referrerpolicy="no-referrer" loading="eager" fetchpriority="high" />
+    <div class="absolute inset-0 bg-blue-600/40 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#ECF5FF]"></div>
+
+    <div class="relative z-10 flex h-full items-center">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl">
+          <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl">Nous contacter</h1>
+          <p class="mt-3 text-base text-white/80 sm:text-lg">
+            Faites le premier pas vers votre formation professionnelle.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ================= SECTION 1 — Carte (ECF5FF) ================= #}
+<section class="bg-[#ECF5FF] py-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-center text-lg font-semibold text-slate-900">Venez à notre rencontre !</h2>
+
+    <div class="relative mx-auto mt-6 aspect-[16/9] max-w-3xl overflow-hidden rounded-2xl ring-1 ring-slate-200 bg-white">
+      <iframe
+        src="{{ MAP_EMBED }}"
+        class="h-full w-full"
+        style="border:0;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        aria-label="Carte – ouvrir dans Google Maps"></iframe>
+
+      <a href="{{ MAP_LINK }}" target="_blank" rel="noopener"
+         class="absolute inset-0"
+         aria-label="Ouvrir l’itinéraire dans Google Maps"></a>
+
+      <div class="pointer-events-none absolute bottom-3 right-3">
+        <a href="{{ MAP_LINK }}" target="_blank" rel="noopener"
+           class="pointer-events-auto inline-flex items-center gap-2 rounded-xl bg-blue-600/90 px-3 py-2 text-sm font-medium text-white shadow hover:bg-blue-700">
+          Ouvrir dans Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ================= SECTION 2 — Formulaire (D7EAFF) ================= #}
+<section class="bg-[#D7EAFF] py-12 text-slate-900">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-center text-lg font-semibold text-slate-900">Prenez contact !</h2>
+
+
+    {% for label, messages in app.flashes %}
+      {% for msg in messages %}
+        <div class="mt-6 rounded-xl bg-green-50 text-green-800 ring-1 ring-green-200 px-4 py-3">{{ msg }}</div>
+      {% endfor %}
+    {% endfor %}
+
+    {% set inputCls = '
+      w-full rounded-xl bg-white
+      border-2 border-[#9EC0FF]
+      px-4 py-2 shadow-sm
+      focus:border-blue-600 focus:ring-2 focus:ring-blue-500/40
+      placeholder-slate-400
+    ' %}
+    {% set areaCls  = inputCls ~ ' min-h-[140px] py-3' %}
+    {% set checkCls = 'rounded text-blue-600 focus:ring-blue-500 mt-1 border-2 border-[#9EC0FF]' %}
+
+    <div class="mt-6 rounded-2xl bg-white ring-1 ring-slate-200 p-6">
+      {{ form_start(contactForm, {
+        attr: {
+          id: 'contactFormJS',
+          class: 'grid grid-cols-1 gap-4 sm:grid-cols-2'
+        }
+      }) }}
+
+        <div>
+          {{ form_label(contactForm.nom, null, { label_attr: { class: 'block text-sm font-medium mb-1'}}) }}
+          {{ form_widget(contactForm.nom, { attr: { class: inputCls, placeholder: 'Nom' }}) }}
+          {{ form_errors(contactForm.nom) }}
+        </div>
+
+        <div>
+          {{ form_label(contactForm.prenom, null, { label_attr: { class: 'block text-sm font-medium mb-1'}}) }}
+          {{ form_widget(contactForm.prenom, { attr: { class: inputCls, placeholder: 'Prénom' }}) }}
+          {{ form_errors(contactForm.prenom) }}
+        </div>
+
+        <div class="sm:col-span-2">
+          {{ form_label(contactForm.email, null, { label_attr: { class: 'block text-sm font-medium mb-1'}}) }}
+          {{ form_widget(contactForm.email, { attr: { class: inputCls, placeholder: 'adresse@email.com' }}) }}
+          {{ form_errors(contactForm.email) }}
+        </div>
+
+        <div class="sm:col-span-2">
+          {{ form_label(contactForm.telephone, null, { label_attr: { class: 'block text-sm font-medium mb-1'}}) }}
+          {{ form_widget(contactForm.telephone, { attr: { class: inputCls, placeholder: '06 12 34 56 78' }}) }}
+          {{ form_errors(contactForm.telephone) }}
+        </div>
+
+        <div class="sm:col-span-2">
+          {{ form_label(contactForm.sujet, null, { label_attr: { class: 'block text-sm font-medium mb-1'}}) }}
+          {{ form_widget(contactForm.sujet, { attr: { class: inputCls, placeholder: 'Sujet de votre demande' }}) }}
+          {{ form_errors(contactForm.sujet) }}
+        </div>
+
+        <div class="sm:col-span-2">
+          {{ form_label(contactForm.message, null, { label_attr: { class: 'block text-sm font-medium mb-1'}}) }}
+          {{ form_widget(contactForm.message, { attr: { class: areaCls,  placeholder: 'Expliquez-nous votre besoin…' }}) }}
+          {{ form_errors(contactForm.message) }}
+        </div>
+
+        <div class="sm:col-span-2 flex items-start gap-2">
+          {{ form_widget(contactForm.rgpd, { attr: { class: checkCls }}) }}
+          {{ form_label(contactForm.rgpd, null, { label_attr: { class: 'text-sm'}}) }}
+          {{ form_errors(contactForm.rgpd) }}
+        </div>
+
+        <div class="sm:col-span-2">
+          <button id="contactSendBtn"
+                  class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white font-medium shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Envoyer
+          </button>
+        </div>
+
+      {{ form_end(contactForm) }}
+    </div>
+  </div>
+</section>
+
+{# ================= SECTION 3 — Coordonnées (ECF5FF) ================= #}
+<section class="bg-[#ECF5FF] py-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-center text-base font-semibold text-slate-900">Appelez-nous directement !</h2>
+
+    <div class="mx-auto mt-6 grid max-w-3xl grid-cols-1 gap-4">
+      <a href="tel:+33761876077"
+         class="flex items-center gap-3 rounded-xl bg-white p-4 ring-1 ring-slate-200 hover:ring-slate-300">
+        <span class="text-xl">📞</span>
+        <span class="font-medium text-slate-900">03 23 67 58 27</span>
+      </a>
+
+      <a href="mailto:info@dpformation.fr"
+         class="flex items-center gap-3 rounded-xl bg-white p-4 ring-1 ring-slate-200 hover:ring-slate-300">
+        <span class="text-xl">✉️</span>
+        <span class="font-medium text-slate-900">info@dpformation.fr</span>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {# SDK EmailJS (obligatoire) #}
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+    // Parallax smooth (identique à l’accueil)
+    (function () {
+      const wrapper = document.getElementById('heroScroll');
+      const viewport = document.getElementById('heroViewport');
+      const img = document.getElementById('heroImg');
+      if (!wrapper || !viewport || !img) return;
+
+      let curr = 0, target = 0, rafId = null;
+
+      function computeTarget() {
+        const start = wrapper.getBoundingClientRect().top + window.scrollY;
+        const range = Math.max(1, viewport.offsetHeight);
+        const y = window.scrollY - start;
+        const pRaw = Math.min(Math.max(y / range, 0), 1);
+        target = Math.min(pRaw, 0.97);
+        tick();
+      }
+      function tick() {
+        if (rafId) return;
+        rafId = requestAnimationFrame(function animate() {
+          rafId = null;
+          curr += (target - curr) * 0.12;
+          if (Math.abs(target - curr) < 0.001) curr = target;
+          else rafId = requestAnimationFrame(animate);
+          img.style.objectPosition = `50% ${Math.round(curr * 100)}%`;
+        });
+      }
+      computeTarget();
+      window.addEventListener('scroll', computeTarget, { passive: true });
+      window.addEventListener('resize', computeTarget);
+    })();
+
+    // EmailJS init
+    emailjs.init('8VAuxSmXV8cgD5739'); // ton Public Key
+
+    // Hook EmailJS sur le formulaire
+    (function () {
+      const form = document.getElementById('contactFormJS');
+      const btn  = document.getElementById('contactSendBtn');
+      if (!form || !btn) return;
+
+      const ids = {
+        nom:      '{{ contactForm.nom.vars.id }}',
+        prenom:   '{{ contactForm.prenom.vars.id }}',
+        email:    '{{ contactForm.email.vars.id }}',
+        telephone:'{{ contactForm.telephone.vars.id }}',
+        sujet:    '{{ contactForm.sujet.vars.id }}',
+        message:  '{{ contactForm.message.vars.id }}',
+        rgpd:     '{{ contactForm.rgpd.vars.id }}'
+      };
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const rgpdChecked = document.getElementById(ids.rgpd)?.checked;
+        if (!rgpdChecked) {
+          alert('Merci de cocher la case RGPD.');
+          return;
+        }
+
+        const params = {
+          nom:        document.getElementById(ids.nom)?.value || '',
+          prenom:     document.getElementById(ids.prenom)?.value || '',
+          email:      document.getElementById(ids.email)?.value || '',
+          telephone:  document.getElementById(ids.telephone)?.value || '',
+          sujet:      document.getElementById(ids.sujet)?.value || '',
+          message:    document.getElementById(ids.message)?.value || '',
+        };
+
+        const SERVICE_ID  = 'service_66uwnmd';
+        const TEMPLATE_ID = 'template_veluusr';
+
+        btn.disabled = true;
+        const prevText = btn.textContent;
+        btn.textContent = 'Envoi…';
+
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, params)
+          .then(() => {
+            alert('Merci, votre message a bien été envoyé !');
+            form.reset();
+          })
+          .catch((err) => {
+            console.error('EmailJS error:', err);
+            alert("Désolé, l'envoi a échoué. Réessayez dans un instant.");
+            // Fallback possible :
+            // form.submit(); // <- décommente si tu veux retomber vers l’envoi Symfony
+          })
+          .finally(() => {
+            btn.disabled = false;
+            btn.textContent = prevText;
+          });
+      });
+    })();
+  </script>
+{% endblock %}

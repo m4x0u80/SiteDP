@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% block title %}En formation – DP Formation{% endblock %}
+
+{% block body %}
+<section class="bg-[#ECF5FF] py-12 text-slate-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h1 class="text-center text-xl font-bold">En formation</h1>
+
+    <div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {# Carte #}
+      <a href="{{ path('app_prestations_formations_show', {slug:'chariots'}) }}"
+         class="group rounded-2xl bg-white p-5 ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm transition">
+        <div class="flex items-start gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-xl bg-slate-100">
+            <img
+              src="{{ asset('images/pictos/chariot.png') }}"
+              srcset="{{ asset('images/pictos/chariot@2x.png') }} 2x"
+              alt="Chariots"
+              class="h-12 w-12 object-contain" loading="lazy" decoding="async">
+          </div>
+          <div class="pt-1">
+            <h3 class="font-semibold text-slate-900">Chariots</h3>
+            <p class="text-sm text-slate-600">CACES® R489</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ path('app_prestations_formations_show', {slug:'gerbeurs'}) }}"
+         class="group rounded-2xl bg-white p-5 ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm transition">
+        <div class="flex items-start gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-xl bg-slate-100">
+            <img
+              src="{{ asset('images/pictos/gerbeur.png') }}"
+              srcset="{{ asset('images/pictos/gerbeur@2x.png') }} 2x"
+              alt="Gerbeurs"
+              class="h-12 w-12 object-contain" loading="lazy" decoding="async">
+          </div>
+          <div class="pt-1">
+            <h3 class="font-semibold text-slate-900">Gerbeurs</h3>
+            <p class="text-sm text-slate-600">CACES® R485</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ path('app_prestations_formations_show', {slug:'chantier'}) }}"
+         class="group rounded-2xl bg-white p-5 ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm transition">
+        <div class="flex items-start gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-xl bg-slate-100">
+            <img
+              src="{{ asset('images/pictos/chantier.png') }}"
+              srcset="{{ asset('images/pictos/chantier@2x.png') }} 2x"
+              alt="Chantier"
+              class="h-12 w-12 object-contain" loading="lazy" decoding="async">
+          </div>
+          <div class="pt-1">
+            <h3 class="font-semibold text-slate-900">Chantier</h3>
+            <p class="text-sm text-slate-600">CACES® R482</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="{{ path('app_prestations_formations_show', {slug:'nacelles'}) }}"
+         class="group rounded-2xl bg-white p-5 ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm transition">
+        <div class="flex items-start gap-3">
+          <div class="grid h-16 w-16 place-items-center rounded-xl bg-slate-100">
+            <img
+              src="{{ asset('images/pictos/nacelle.png') }}"
+              srcset="{{ asset('images/pictos/nacelle@2x.png') }} 2x"
+              alt="Nacelles"
+              class="h-12 w-12 object-contain" loading="lazy" decoding="async">
+          </div>
+          <div class="pt-1">
+            <h3 class="font-semibold text-slate-900">Nacelles</h3>
+            <p class="text-sm text-slate-600">CACES® R486</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

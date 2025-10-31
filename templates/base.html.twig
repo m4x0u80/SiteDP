@@ -1,0 +1,116 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}DP Formation{% endblock %}</title>
+
+    {% block stylesheets %}
+      {# Tailwind en CDN pour prototyper (remplace par Encore/Vite si besoin) #}
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script>tailwind.config = { theme: { extend: {} } }</script>
+      <style>
+        [x-cloak]{display:none}
+        /* masque la scrollbar horizontale pour le carrousel */
+        .no-scrollbar::-webkit-scrollbar{ display:none; }
+        .no-scrollbar{ -ms-overflow-style:none; scrollbar-width:none; }
+      </style>
+      {# Encore/Vite :
+      {{ encore_entry_link_tags('app') }}
+      {{ vite_entry_link_tags('app') }}
+      #}
+    {% endblock %}
+    {% block meta %}{% endblock %}
+  </head>
+
+  <body class="bg-slate-950 text-white antialiased">
+    {# ================= NAVBAR (commune à toutes les pages) ================= #}
+    {% block header %}
+      <header class="absolute inset-x-0 top-0 z-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between py-4">
+            <a href="{{ path('app_home') is defined ? path('app_home') : '#' }}"
+               class="font-semibold tracking-wide text-white/90 hover:text-white">
+              DP Formation
+            </a>
+
+            <nav class="pointer-events-auto absolute left-1/2 hidden -translate-x-1/2 md:flex">
+              <ul class="flex items-center gap-6 rounded-full bg-white/5 px-6 py-2 backdrop-blur-md ring-1 ring-white/10">
+                <li><a class="text-sm text-white/80 hover:text-white" href="{{ path('app_home') }}">Accueil</a></li>
+                <li><a class="text-sm text-white/80 hover:text-white" href="{{ path('app_about') }}">Nous découvrir</a></li>
+                <li><a class="text-sm text-white/80 hover:text-white" href="{{ path('app_prestations') }}">Prestations</a></li>
+                <li><a class="text-sm text-white/80 hover:text-white" href="{{ path('app_contact') }}">Contact</a></li>
+              </ul>
+            </nav>
+
+            <div class="hidden md:block w-24"></div>
+          </div>
+        </div>
+      </header>
+    {% endblock %}
+    {# ================= / NAVBAR ================= #}
+
+    {% block body %}{% endblock %}
+
+{% block footer %}
+<footer class="text-white bg-[rgba(0,0,255,0.55)]">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-4 py-6 sm:grid-cols-3">
+
+      <div class="flex items-center gap-4">
+        <a href="https://www.instagram.com/dp_formation/" target="_blank" rel="noopener" aria-label="Instagram"
+           class="inline-flex items-center justify-center h-9 w-9 rounded-full ring-1 ring-white/20 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/60">
+          <img src="{{ asset('images/instagram.png') }}"
+               alt="Instagram"
+               class="h-5 w-5 brightness-0 invert" />
+        </a>
+
+        <a href="https://www.tiktok.com/@dp_formation" target="_blank" rel="noopener" aria-label="TikTok"
+           class="inline-flex items-center justify-center h-9 w-9 rounded-full ring-1 ring-white/20 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/60">
+          <img src="{{ asset('images/depositphotos_344518290-stock-illustration-tik-tok-flat-icon-template-removebg-preview.png') }}"
+               alt="TikTok"
+               class="h-5 w-5 brightness-0 invert" />
+        </a>
+
+        <a href="https://www.facebook.com/Dpformation.fr" target="_blank" rel="noopener" aria-label="Facebook"
+           class="inline-flex items-center justify-center h-9 w-9 rounded-full ring-1 ring-white/20 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/60">
+          <img src="{{ asset('images/facebook.png') }}"
+               alt="Facebook"
+               class="h-5 w-5 brightness-0 invert" />
+        </a>
+
+        <a href="https://www.linkedin.com/in/dp-formation-23956034a/" target="_blank" rel="noopener" aria-label="LinkedIn"
+           class="inline-flex items-center justify-center h-9 w-9 rounded-full ring-1 ring-white/20 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/60">
+          <img src="{{ asset('images/linkedin.png') }}"
+               alt="LinkedIn"
+               class="h-5 w-5 brightness-0 invert" />
+        </a>
+      </div>
+
+      <div class="text-center text-sm font-medium">
+        © DP Formation
+      </div>
+
+      <div class="sm:text-right">
+        <a href="/plan-du-site"  {# ou {{ path('app_sitemap') }} #}
+           class="text-sm font-medium text-white/90 underline-offset-2 hover:text-white hover:underline focus:outline-none focus:ring-2 focus:ring-white/60 rounded">
+          Plan de site
+        </a>
+      </div>
+
+    </div>
+  </div>
+</footer>
+{% endblock %}
+
+
+    {% block javascripts %}
+      <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+      {# Encore/Vite :
+      {{ encore_entry_script_tags('app') }}
+      {{ vite_entry_script_tags('app') }}
+      #}
+    {% endblock %}
+  </body>
+</html>

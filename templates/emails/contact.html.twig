@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+  <body style="font:14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial;">
+    <h2>Nouveau message du site</h2>
+    <p><strong>De :</strong> {{ d.prenom }} {{ d.nom }}</p>
+    <p><strong>Email :</strong> {{ d.email }}{% if d.telephone %} — <strong>Tél. :</strong> {{ d.telephone }}{% endif %}</p>
+    <p><strong>Sujet :</strong> {{ d.sujet }}</p>
+    <hr>
+    <pre style="white-space:pre-wrap">{{ d.message }}</pre>
+  </body>
+</html>

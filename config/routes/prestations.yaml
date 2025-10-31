@@ -1,0 +1,23 @@
+app_prestations_formations:
+  path: /prestations/formations
+  controller: App\Controller\PrestationsController::formations
+
+app_formations_chariots:
+  path: /prestations/formations/chariots
+  controller: App\Controller\PrestationsController::formationsShow
+  defaults: { slug: chariots }
+
+app_formations_gerbeurs:
+  path: /prestations/formations/gerbeurs
+  controller: App\Controller\PrestationsController::formationsShow
+  defaults: { slug: gerbeurs }
+
+app_formations_chantier:
+  path: /prestations/formations/chantier
+  controller: App\Controller\PrestationsController::formationsShow
+  defaults: { slug: chantier }
+
+app_formations_nacelles:
+  path: /prestations/formations/nacelles
+  controller: App\Controller\PrestationsController::formationsShow
+  defaults: { slug: nacelles }

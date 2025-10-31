@@ -1,0 +1,287 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Prestations – DP Formation{% endblock %}
+
+{% set HERO_REMOTE = asset('images/presta.jpg') %}
+{% set HERO_LOCAL  = asset('images/presta.jpg') %}
+
+{% block meta %}
+  <link rel="preload" as="image" href="{{ HERO_REMOTE }}">
+{% endblock %}
+
+{% block body %}
+{# ========== Image défilante ========== #}
+<section id="heroScroll" class="relative min-h-[60vh]">
+  <div id="heroViewport" class="sticky top-0 h-[60vh] overflow-hidden">
+    <img id="heroImg"
+         src="{{ HERO_REMOTE }}"
+         alt="Nous découvrir – DP Formation"
+         class="absolute inset-0 h-full w-full object-cover"
+         style="object-position:50% 0%; transition:object-position 180ms ease-out; will-change:object-position;"
+         onerror="this.onerror=null;this.src='{{ HERO_LOCAL }}';"
+         referrerpolicy="no-referrer" loading="eager" fetchpriority="high" />
+    {# Overlay bleu 40% #}
+    <div class="absolute inset-0 bg-blue-600/40 mix-blend-multiply"></div>
+    {# Fondu vers la 1re section claire #}
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#ECF5FF]"></div>
+
+    <div class="relative z-10 flex h-full items-center">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl">
+          <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl">
+            Nos Prestations
+          </h1>
+          <p class="mt-3 text-base text-white/80 sm:text-lg">
+            Des formations adaptées à vos
+            besoins en sécurité et manutention
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{# ========== SECTION — Offres (style “4 cartes”) ========== #}
+<section class="bg-[#ECF5FF] py-12 text-slate-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-center text-xl font-bold">Nos prestations</h2>
+
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {# ---- Carte 1 : CACES ---- #}
+      <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 md:p-6 grid grid-rows-[auto_1fr_auto] gap-3 hover:shadow-md transition-shadow">
+        <!-- Header: icône + titre -->
+        <header class="flex items-start gap-3">
+          <img
+            src="{{ asset('images/chariot.png') }}"
+            srcset="{{ asset('images/chariot.png') }} 1x, {{ asset('images/chariot@2x.png') }} 2x"
+            alt=""
+            class="h-10 w-10 object-contain select-none"
+            loading="lazy"
+          />
+          <h3 class="text-base font-bold leading-tight">Formations CACES®</h3>
+        </header>
+
+        <!-- Contenu -->
+        <p class="text-sm font-bold text-center text-slate-700">
+          R489, R486, R485, R482…
+        </p>
+
+        <!-- Footer: bouton en bas à droite -->
+        <footer class="flex justify-end">
+          <a href="{{ path('app_prestations_formations') }}"
+             class="inline-flex items-center rounded-lg bg-[#1d4ed8] px-3 py-2 text-xs font-bold text-white shadow hover:bg-[#1b45c3]">
+            En savoir plus
+          </a>
+        </footer>
+      </article>
+
+      {# ---- Carte 2 : Habilitations électriques ---- #}
+      <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 md:p-6 grid grid-rows-[auto_1fr_auto] gap-3 hover:shadow-md transition-shadow">
+        <header class="flex items-start gap-3">
+          <img
+            src="{{ asset('images/electricite.png') }}"
+            srcset="{{ asset('images/electricite.png') }} 1x, {{ asset('images/electricite@2x.png') }} 2x"
+            alt=""
+            class="h-10 w-10 object-contain select-none"
+            loading="lazy"
+          />
+          <h3 class="text-base font-bold leading-tight">Habilitations Électriques</h3>
+        </header>
+
+        <p class="text-sm text-center font-bold text-slate-700">
+          B0, B1, B2, BR, BC, BS…
+        </p>
+
+        <footer class="flex justify-end">
+          <a href="#elec"
+             class="inline-flex items-center rounded-lg bg-[#1d4ed8] px-3 py-2 text-xs font-bold text-white shadow hover:bg-[#1b45c3]">
+            En savoir plus
+          </a>
+        </footer>
+      </article>
+
+      {# ---- Carte 3 : Sécurité au travail ---- #}
+      <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 md:p-6 grid grid-rows-[auto_1fr_auto] gap-3 hover:shadow-md transition-shadow">
+        <header class="flex items-start gap-3">
+          <img
+            src="{{ asset('images/rcr_bleu.png') }}"
+            srcset="{{ asset('images/rcr_bleu.png') }} 1x, {{ asset('images/rcr_bleu@2x.png') }} 2x"
+            alt=""
+            class="h-10 w-10 object-contain select-none"
+            loading="lazy"
+          />
+          <h3 class="text-base font-bold leading-tight">Sécurité au travail</h3>
+        </header>
+
+        <p class="text-sm text-center font-bold text-slate-700">
+          SST, AIPR, échafaudage…
+        </p>
+
+        <footer class="flex justify-end">
+          <a href="#secu"
+             class="inline-flex items-center rounded-lg bg-[#1d4ed8] px-3 py-2 text-xs font-bold text-white shadow hover:bg-[#1b45c3]">
+            En savoir plus
+          </a>
+        </footer>
+      </article>
+
+      {# ---- Carte 4 : Sur-mesure ---- #}
+      <article class="rounded-2xl bg-white ring-1 ring-slate-200 shadow-sm p-5 md:p-6 grid grid-rows-[auto_1fr_auto] gap-3 hover:shadow-md transition-shadow">
+        <header class="flex items-start gap-3">
+          <img
+            src="{{ asset('images/gilet_securite.png') }}"
+            srcset="{{ asset('images/gilet-haute-visibilite.png') }} 1x, {{ asset('images/gilet-haute-visibilite@2x.png') }} 2x"
+            alt=""
+            class="h-10 w-10 object-contain select-none"
+            loading="lazy"
+          />
+          <h3 class="text-base font-bold leading-tight">Formations sur-mesure</h3>
+        </header>
+
+        <p class="text-sm text-center font-bold text-slate-700">
+          Programmes adaptés : ACI, formations de formateurs…
+        </p>
+
+        <footer class="flex justify-end">
+          <a href="#aci"
+             class="inline-flex items-center rounded-lg bg-[#1d4ed8] px-3 py-2 text-xs font-bold text-white shadow hover:bg-[#1b45c3]">
+            En savoir plus
+          </a>
+        </footer>
+      </article>
+    </div>
+  </div>
+</section>
+
+{# ========== SECTION — Quelques chiffres (fond #D7EAFF) ========== #}
+<section class="bg-[#D7EAFF] py-12 text-slate-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-center text-xl font-bold">Quelques chiffres</h2>
+
+    {# --- Ligne 1 : mini-cartes % avec camembert --- #}
+    <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {# Carte 1 #}
+      <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 flex items-center justify-between">
+        <div>
+          <div class="text-sm font-semibold">99,7%</div>
+          <div class="text-[11px] text-slate-500">R482</div>
+        </div>
+        <div class="h-10 w-10 rounded-full"
+             style="--p:99.7; background:
+                    conic-gradient(#10b981 calc(var(--p)*1%), #e5e7eb 0);
+                    ">
+        </div>
+      </div>
+
+      {# Carte 2 #}
+      <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 flex items-center justify-between">
+        <div>
+          <div class="text-sm font-semibold">96,41%</div>
+          <div class="text-[11px] text-slate-500">R489</div>
+        </div>
+        <div class="h-10 w-10 rounded-full"
+             style="--p:96.41; background:
+                    conic-gradient(#8b5cf6 calc(var(--p)*1%), #e5e7eb 0);
+                    ">
+        </div>
+      </div>
+
+      {# Carte 3 #}
+      <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 flex items-center justify-between">
+        <div>
+          <div class="text-sm font-semibold">100%</div>
+          <div class="text-[11px] text-slate-500">R485</div>
+        </div>
+        <div class="h-10 w-10 rounded-full"
+             style="--p:100; background:
+                    conic-gradient(#ec4899 calc(var(--p)*1%), #e5e7eb 0);
+                    ">
+        </div>
+      </div>
+
+      {# Carte 4 #}
+      <div class="rounded-xl bg-white ring-1 ring-slate-200 p-4 flex items-center justify-between">
+        <div>
+          <div class="text-sm font-semibold">99,23%</div>
+          <div class="text-[11px] text-slate-500">R486A</div>
+        </div>
+        <div class="h-10 w-10 rounded-full"
+             style="--p:99.23; background:
+                    conic-gradient(#f59e0b calc(var(--p)*1%), #e5e7eb 0);
+                    ">
+        </div>
+      </div>
+    </div>
+
+    {# --- Ligne 2 : gros KPI --- #}
+    <div class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 text-center">
+      <div>
+        <div class="text-4xl md:text-5xl font-extrabold tracking-tight">8500+</div>
+        <div class="mt-2 text-sm font-semibold leading-snug">
+          apprenants formés<br/>chaque année
+        </div>
+      </div>
+
+      <div>
+        <div class="text-4xl md:text-5xl font-extrabold tracking-tight">96%</div>
+        <div class="mt-2 text-sm font-semibold leading-snug">
+          de<br/>Satisfaction
+        </div>
+      </div>
+
+      <div>
+        <div class="text-4xl md:text-5xl font-extrabold tracking-tight">25+</div>
+        <div class="mt-2 text-sm font-semibold leading-snug">
+          années<br/>d’expérience
+        </div>
+      </div>
+
+      <div>
+        <div class="text-4xl md:text-5xl font-extrabold tracking-tight">98%</div>
+        <div class="mt-2 text-sm font-semibold leading-snug">
+          de réussite<br/>tests CACES®
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    (function () {
+      const wrapper = document.getElementById('heroScroll');
+      const viewport = document.getElementById('heroViewport');
+      const img = document.getElementById('heroImg');
+      if (!wrapper || !viewport || !img) return;
+
+      let curr = 0, target = 0, rafId = null;
+
+      function computeTarget() {
+        const start = wrapper.getBoundingClientRect().top + window.scrollY;
+        const range = Math.max(1, viewport.offsetHeight); // 60vh
+        const y = window.scrollY - start;
+        const pRaw = Math.min(Math.max(y / range, 0), 1);
+        target = Math.min(pRaw, 0.97); 
+        tick();
+      }
+      function tick() {
+        if (rafId) return;
+        rafId = requestAnimationFrame(function animate() {
+          rafId = null;
+          curr += (target - curr) * 0.12; // 0.08=plus doux, 0.2=plus rapide
+          if (Math.abs(target - curr) < 0.001) curr = target;
+          else rafId = requestAnimationFrame(animate);
+          img.style.objectPosition = `50% ${Math.round(curr * 100)}%`;
+        });
+      }
+      computeTarget();
+      window.addEventListener('scroll', computeTarget, { passive: true });
+      window.addEventListener('resize', computeTarget);
+      })();
+  </script>
+{% endblock %}

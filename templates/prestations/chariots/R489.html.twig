@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+{% block title %}Chariots – CACES® R489{% endblock %}
+
+{# Visuel de tête (même esprit que tes autres pages) #}
+{% set HERO_REMOTE = asset('images/presta.jpg') %}
+{% set HERO_LOCAL  = asset('images/presta.jpg') %}
+
+{% block meta %}
+  <link rel="preload" as="image" href="{{ HERO_REMOTE }}">
+{% endblock %}
+
+{% block body %}
+  {# ---- HERO défilant / image de tête ---- #}
+  <section id="heroScroll" class="relative min-h-[40vh]">
+    <div id="heroViewport" class="sticky top-0 h-[40vh] overflow-hidden">
+      <img id="heroImg"
+           src="{{ HERO_REMOTE }}"
+           alt="Formations CACES® – Chariots"
+           class="absolute inset-0 h-full w-full object-cover"
+           style="object-position:50% 0%; transition:object-position 180ms ease-out; will-change:object-position;"
+           onerror="this.onerror=null;this.src='{{ HERO_LOCAL }}';"
+           loading="eager" fetchpriority="high" />
+      <div class="absolute inset-0 bg-blue-600/40 mix-blend-multiply"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#ECF5FF]"></div>
+
+      <div class="relative z-10 flex h-full items-center">
+        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="max-w-2xl">
+            <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl">Formations CACES®</h1>
+            <p class="mt-3 text-base text-white/80 sm:text-lg">Chariots – référentiel R489</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# ---- GRID catégories ---- #}
+  <section class="bg-[#ECF5FF] py-12 text-slate-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <h2 class="text-center text-xl font-bold">Chariots</h2>
+
+      {# 3 colonnes sur desktop, 2 sur tablette, 1 sur mobile #}
+      <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
+
+        {# Carte 1A #}
+        <a href="{{ path('app_formations_chariots_cat', {cat: '1A'}) }}"
+           class="group block w-[230px] rounded-2xl bg-white p-8 text-center ring-1 ring-slate-200 shadow-sm hover:shadow-md hover:ring-slate-300 transition"
+           aria-label="Catégorie 1A – Voir la fiche">
+          <div class="mx-auto mb-4 grid h-28 w-28 place-items-center rounded-xl bg-slate-100">
+            <img
+              src="{{ asset('images/CACES_R489_1A.png') }}"
+              srcset="{{ asset('images/CACES_R489_1A.png') }} 1x, {{ asset('images/CACES_R489_1A@2x.png') }} 2x"
+              alt=""
+              class="h-20 w-20 object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="text-sm font-bold text-slate-900">Catégorie 1A</div>
+        </a>
+
+        {# Carte 1B #}
+        <a href="{{ path('app_formations_chariots_cat', {cat: '1B'}) }}"
+           class="group block w-[230px] rounded-2xl bg-white p-8 text-center ring-1 ring-slate-200 shadow-sm hover:shadow-md hover:ring-slate-300 transition"
+           aria-label="Catégorie 1B – Voir la fiche">
+          <div class="mx-auto mb-4 grid h-28 w-28 place-items-center rounded-xl bg-slate-100">
+            <img
+              src="{{ asset('images/CACES_R489_1B.png') }}"
+              srcset="{{ asset('images/CACES_R489_1B.png') }} 1x, {{ asset('images/CACES_R489_1B@2x.png') }} 2x"
+              alt=""
+              class="h-20 w-20 object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="text-sm font-bold text-slate-900">Catégorie 1B</div>
+        </a>
+
+        {# Carte 2B #}
+        <a href="{{ path('app_formations_chariots_cat', {cat: '2B'}) }}"
+           class="group block w-[230px] rounded-2xl bg-white p-8 text-center ring-1 ring-slate-200 shadow-sm hover:shadow-md hover:ring-slate-300 transition"
+           aria-label="Catégorie 2B – Voir la fiche">
+          <div class="mx-auto mb-4 grid h-28 w-28 place-items-center rounded-xl bg-slate-100">
+            <img
+              src="{{ asset('images/CACES_R489_2B.png') }}"
+              srcset="{{ asset('images/CACES_R489_2B.png') }} 1x, {{ asset('images/cat_2CACES_R489_2B@2x.png') }} 2x"
+              alt=""
+              class="h-20 w-20 object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="text-sm font-bold text-slate-900">Catégorie 2B</div>
+        </a>
+
+        {# Carte 3 #}
+        <a href="{{ path('app_formations_chariots_cat', {cat: '3'}) }}"
+           class="group block w-[230px] rounded-2xl bg-white p-8 text-center ring-1 ring-slate-200 shadow-sm hover:shadow-md hover:ring-slate-300 transition"
+           aria-label="Catégorie 3 – Voir la fiche">
+          <div class="mx-auto mb-4 grid h-28 w-28 place-items-center rounded-xl bg-slate-100">
+            <img
+              src="{{ asset('images/CACES_R489_3.png') }}"
+              srcset="{{ asset('images/CACES_R489_3.png') }} 1x, {{ asset('images/CACES_R489_3@2x.png') }} 2x"
+              alt=""
+              class="h-20 w-20 object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="text-sm font-bold text-slate-900">Catégorie 3</div>
+        </a>
+
+        {# Carte 4 #}
+        <a href="{{ path('app_formations_chariots_cat', {cat: '4'}) }}"
+           class="group block w-[230px] rounded-2xl bg-white p-8 text-center ring-1 ring-slate-200 shadow-sm hover:shadow-md hover:ring-slate-300 transition"
+           aria-label="Catégorie 4 – Voir la fiche">
+          <div class="mx-auto mb-4 grid h-28 w-28 place-items-center rounded-xl bg-slate-100">
+            <img
+              src="{{ asset('images/CACES_R489_4.png') }}"
+              srcset="{{ asset('images/CACES_R489_4.png') }} 1x, {{ asset('images/CACES_R489_4@2x.png') }} 2x"
+              alt=""
+              class="h-20 w-20 object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="text-sm font-bold text-slate-900">Catégorie 4</div>
+        </a>
+
+        {# Carte 5 #}
+        <a href="{{ path('app_formations_chariots_cat', {cat: '5'}) }}"
+           class="group block w-[230px] rounded-2xl bg-white p-8 text-center ring-1 ring-slate-200 shadow-sm hover:shadow-md hover:ring-slate-300 transition"
+           aria-label="Catégorie 5 – Voir la fiche">
+          <div class="mx-auto mb-4 grid h-28 w-28 place-items-center rounded-xl bg-slate-100">
+            <img
+              src="{{ asset('images/CACES_R489_5.png') }}"
+              srcset="{{ asset('images/CACES_R489_5.png') }} 1x, {{ asset('images/CACES_R489_5@2x.png') }} 2x"
+              alt=""
+              class="h-20 w-20 object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="text-sm font-bold text-slate-900">Catégorie 5</div>
+        </a>
+
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="{{ path('app_prestations_formations') }}"
+           class="text-sm font-medium text-blue-700 hover:text-blue-800 underline underline-offset-2">
+          ← Retour “En Formation”
+        </a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    // Parallax doux pour le hero
+    (function () {
+      const wrapper = document.getElementById('heroScroll');
+      const viewport = document.getElementById('heroViewport');
+      const img = document.getElementById('heroImg');
+      if (!wrapper || !viewport || !img) return;
+
+      let curr = 0, target = 0, rafId = null;
+
+      function computeTarget() {
+        const start = wrapper.getBoundingClientRect().top + window.scrollY;
+        const range = Math.max(1, viewport.offsetHeight);
+        const y = window.scrollY - start;
+        const pRaw = Math.min(Math.max(y / range, 0), 1);
+        target = Math.min(pRaw, 0.97);
+        tick();
+      }
+      function tick() {
+        if (rafId) return;
+        rafId = requestAnimationFrame(function animate() {
+          rafId = null;
+          curr += (target - curr) * 0.12;
+          if (Math.abs(target - curr) < 0.001) curr = target;
+          else rafId = requestAnimationFrame(animate);
+          img.style.objectPosition = `50% ${Math.round(curr * 100)}%`;
+        });
+      }
+      computeTarget();
+      window.addEventListener('scroll', computeTarget, { passive: true });
+      window.addEventListener('resize', computeTarget);
+    })();
+  </script>
+{% endblock %}

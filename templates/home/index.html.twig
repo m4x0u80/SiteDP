@@ -1,0 +1,984 @@
+{# templates/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Formations CACES® & Sécurité – DP Formation{% endblock %}
+
+{# URL distante + fallback local #}
+{% set HERO_REMOTE = 'https://chatgpt.com/s/m_68e50f2d685881919448a3e3350a131a' %}
+{% set HERO_LOCAL  = asset('images/hero.png') %}
+
+{% block meta %}
+  <link rel="preload" as="image" href="{{ HERO_REMOTE }}">
+{% endblock %}
+
+{% block body %}
+  {# ---- HERO (sticky 60vh + parallax vertical smooth) ---- #}
+  <section id="heroScroll" class="relative min-h-[60vh]">
+    <div id="heroViewport" class="sticky top-0 h-[60vh] overflow-hidden">
+      <img
+        id="heroImg"
+        src="{{ HERO_REMOTE }}"
+        alt="Visuel d'en-tête – chantier / nacelle"
+        class="absolute inset-0 h-full w-full object-cover"
+        style="object-position: 50% 0%; transition: object-position 180ms ease-out; will-change: object-position;"
+        referrerpolicy="no-referrer"
+        crossorigin="anonymous"
+        loading="eager" fetchpriority="high"
+        onerror="this.onerror=null;this.src='{{ HERO_LOCAL }}';"
+      />
+      {# Overlay bleu #}
+      <div class="absolute inset-0 bg-blue-600/40 mix-blend-multiply"></div>
+      {# Fusion douce vers la section claire (#ECF5FF) #}
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#ECF5FF]"></div>
+
+      <div class="relative z-10 flex h-full items-center">
+        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="max-w-2xl">
+            <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl">
+              Formations CACES® & Sécurité
+            </h1>
+            <p class="mt-3 text-base text-white/80 sm:text-lg">
+              Transformez vos ambitions en compétences avec nos formations sur-mesure.
+            </p>
+            <div class="mt-8 flex gap-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{# ---- CARROUSEL Nos Formations (flèches plus à l’extérieur) ---- #}
+<section id="formations" aria-labelledby="titre-formations"
+         class="relative py-12 bg-[#ECF5FF] text-slate-900 select-none">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 id="titre-formations" class="text-center text-xl font-semibold">
+      Nos Formations
+    </h2>
+
+    <div class="relative mt-6 min-h-[200px] flex items-center">
+
+      {# Flèche précédente : semi-hors cadre #}
+      <button id="btnPrev" type="button"
+              class="hidden md:flex absolute left-0 -translate-x-[130%] top-1/2 -translate-y-1/2 h-10 w-10 items-center justify-center rounded-full bg-white ring-1 ring-slate-300 text-slate-700 hover:bg-slate-50 z-20"
+              aria-label="Précédent">‹</button>
+
+      {# Piste : gouttières internes ; DOIT scroller horiz. #}
+      <div id="track"
+           class="no-scrollbar mx-auto flex items-stretch justify-start gap-4 overflow-x-auto snap-x snap-mandatory w-full py-4"
+           style="scroll-behavior:smooth;">
+        {# Gouttière gauche (petite sur mobile, large sur desktop) #}
+        <span aria-hidden="true" class="gutter flex-none w-10 md:w-[7.5rem]"></span>
+
+        {# === Cartes (avec images) === #}
+        <a data-card href="#r489" class="snap-start min-w-[160px] max-w-[160px] shrink-0 select-none rounded-2xl bg-white p-4 text-center ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm">
+          <div class="mx-auto mb-2 grid h-14 w-14 place-items-center rounded-xl bg-slate-100">
+            <img src="{{ asset('images/chariot.png') }}" alt="CACES R489" class="h-10 w-10 object-contain" loading="lazy" />
+          </div>
+          <div class="text-xs text-slate-500">CACES®</div>
+          <div class="text-sm font-semibold text-slate-900">R489</div>
+        </a>
+
+        <a data-card href="#r486" class="snap-start min-w-[160px] max-w-[160px] shrink-0 select-none rounded-2xl bg-white p-4 text-center ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm">
+          <div class="mx-auto mb-2 grid h-14 w-14 place-items-center rounded-xl bg-slate-100">
+            <img src="{{ asset('images/nacelle-a-ciseaux.png') }}" alt="CACES R486 (PEMP)" class="h-10 w-10 object-contain" loading="lazy" />
+          </div>
+          <div class="text-xs text-slate-500">CACES®</div>
+          <div class="text-sm font-semibold text-slate-900">R486 (PEMP)</div>
+        </a>
+
+        <a data-card href="#r482" class="snap-start min-w-[160px] max-w-[160px] shrink-0 select-none rounded-2xl bg-white p-4 text-center ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm">
+          <div class="mx-auto mb-2 grid h-14 w-14 place-items-center rounded-xl bg-slate-100">
+            <img src="{{ asset('images/pelle.png') }}" alt="CACES R482" class="h-10 w-10 object-contain" loading="lazy" />
+          </div>
+          <div class="text-xs text-slate-500">CACES®</div>
+          <div class="text-sm font-semibold text-slate-900">R482</div>
+        </a>
+
+        <a data-card href="#r485" class="snap-start min-w-[160px] max-w-[160px] shrink-0 select-none rounded-2xl bg-white p-4 text-center ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm">
+          <div class="mx-auto mb-2 grid h-14 w-14 place-items-center rounded-xl bg-slate-100">
+            <img src="{{ asset('images/gerbeur.png') }}" alt="CACES R485" class="h-10 w-10 object-contain" loading="lazy" />
+          </div>
+          <div class="text-xs text-slate-500">CACES®</div>
+          <div class="text-sm font-semibold text-slate-900">R485</div>
+        </a>
+
+        <a data-card href="#elingage" class="snap-start min-w-[160px] max-w-[160px] shrink-0 select-none rounded-2xl bg-white p-4 text-center ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm">
+          <div class="mx-auto mb-2 grid h-14 w-14 place-items-center rounded-xl bg-slate-100">
+            <img src="{{ asset('images/accrocher.png') }}" alt="Élingage" class="h-10 w-10 object-contain" loading="lazy" />
+          </div>
+          <div class="text-xs text-slate-500">Manutention</div>
+          <div class="text-sm font-semibold text-slate-900">Élingage</div>
+        </a>
+
+        <a data-card href="#hauteur" class="snap-start min-w-[160px] max-w-[160px] shrink-0 select-none rounded-2xl bg-white p-4 text-center ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm">
+          <div class="mx-auto mb-2 grid h-14 w-14 place-items-center rounded-xl bg-slate-100">
+            <img src="{{ asset('images/harnais-de-securite.png') }}" alt="Travail en hauteur" class="h-10 w-10 object-contain" loading="lazy" />
+          </div>
+          <div class="text-xs text-slate-500">Sécurité</div>
+          <div class="text-sm font-semibold text-slate-900">Travail en hauteur</div>
+        </a>
+
+        <a data-card href="#echafaudage" class="snap-start min-w-[160px] max-w-[160px] shrink-0 select-none rounded-2xl bg-white p-4 text-center ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm">
+          <div class="mx-auto mb-2 grid h-14 w-14 place-items-center rounded-xl bg-slate-100">
+            <img src="{{ asset('images/echafaudage.png') }}" alt="Échafaudage" class="h-10 w-10 object-contain" loading="lazy" />
+          </div>
+          <div class="text-xs text-slate-500">Sécurité</div>
+          <div class="text-sm font-semibold text-slate-900">Échafaudage</div>
+        </a>
+
+        <a data-card href="#aipr" class="snap-start min-w-[160px] max-w-[160px] shrink-0 select-none rounded-2xl bg-white p-4 text-center ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm">
+          <div class="mx-auto mb-2 grid h-14 w-14 place-items-center rounded-xl bg-slate-100">
+            <img src="{{ asset('images/conduite-de-gaz.png') }}" alt="AIPR" class="h-10 w-10 object-contain" loading="lazy" />
+          </div>
+          <div class="text-xs text-slate-500">Réseaux</div>
+          <div class="text-sm font-semibold text-slate-900">AIPR</div>
+        </a>
+
+        <a data-card href="#sst" class="snap-start min-w-[160px] max-w-[160px] shrink-0 select-none rounded-2xl bg-white p-4 text-center ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm">
+          <div class="mx-auto mb-2 grid h-14 w-14 place-items-center rounded-xl bg-slate-100">
+            <img src="{{ asset('images/rcr_bleu.png') }}" alt="SST" class="h-10 w-10 object-contain" loading="lazy" />
+          </div>
+          <div class="text-xs text-slate-500">Secourisme</div>
+          <div class="text-sm font-semibold text-slate-900">SST</div>
+        </a>
+
+        <a data-card href="#habilitation" class="snap-start min-w-[160px] max-w-[160px] shrink-0 select-none rounded-2xl bg-white p-4 text-center ring-1 ring-slate-200 hover:ring-slate-300 shadow-sm">
+          <div class="mx-auto mb-2 grid h-14 w-14 place-items-center rounded-xl bg-slate-100">
+            <img src="{{ asset('images/electricite.png') }}" alt="Habilitation Électrique" class="h-10 w-10 object-contain" loading="lazy" />
+          </div>
+          <div class="text-xs text-slate-500">Électricité</div>
+          <div class="text-sm font-semibold text-slate-900">Habilitation Électrique</div>
+        </a>
+
+        {# Gouttière droite : espace avant la flèche #}
+        <span aria-hidden="true" class="gutter flex-none w-10 md:w-[7.5rem]"></span>
+      </div>
+
+      {# Flèche suivante : semi-hors cadre #}
+      <button id="btnNext" type="button"
+              class="hidden md:flex absolute right-0 translate-x-[130%] top-1/2 -translate-y-1/2 h-10 w-10 items-center justify-center rounded-full bg-white ring-1 ring-slate-300 text-slate-700 hover:bg-slate-50 z-20"
+              aria-label="Suivant">›</button>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+  {# ---- RÉSERVATION ---- #}
+  <section id="reservation" class="relative py-16 bg-[#D7EAFF] text-slate-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-2xl font-semibold text-slate-900 text-center">Pré-réserver une formation</h2>
+
+        {# Form: 2 selects + bouton à droite sur la même ligne (desktop) #}
+        <form id="searchForm" name="searchForm"
+              class="mt-8 grid grid-cols-1 gap-6 sm:[grid-template-columns:1fr_1fr_auto] rounded-2xl p-6 ring-1 ring-slate-200 bg-white/70 backdrop-blur">
+
+          <div class="form-group">
+            <label for="formation" class="block text-sm font-medium text-slate-700 mb-2">Choisir une formation</label>
+            <select id="formation" name="formation" required
+                    class="w-full rounded-xl border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500">
+              <option value="">Sélectionner une formation</option>
+              <option value="CACES489">CACES® R489</option>
+              <option value="CACES489_Recyclage">CACES® R489 Recyclage</option>
+              <option value="CACES486">CACES® R486</option>
+              <option value="CACES486_Recyclage">CACES® R486 Recyclage</option>
+              <option value="CACES485">CACES® R485</option>
+              <option value="CACES482_A_F">CACES® R482 A / F</option>
+              <option value="CACES482_B1_C1_G">CACES® R482 B1 / C1 / G</option>
+              <option value="Elingage">Élingage</option>
+              <option value="Travail_en_Hauteur">Travail en Hauteur</option>
+              <option value="Echafaudage_Roulant">Échafaudage Roulant</option>
+              <option value="Echafaudage_Fixe">Échafaudage de Pied</option>
+              <option value="Echafaudage_Fixe/Roulant">Échafaudage</option>
+              <option value="AIPR_Operateur">AIPR Opérateur</option>
+              <option value="AIPR_Encadrant">AIPR Encadrant</option>
+              <option value="AIPR_Concepteur">AIPR Concepteur</option>
+              <option value="AIPR">AIPR (générique)</option>
+              <option value="SST">Sauveteur Secouriste du Travail</option>
+              <option value="MAC_SST">MAC SST</option>
+              <option value="Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage">Habilitation Électrique B1/B2/BR/BC</option>
+              <option value="Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage">Habilitation Électrique BS/BE Manoeuvre (Recyclage)</option>
+              <option value="Habilitation_Electrique_B0_H0_BF-HF">Habilitation Électrique B0/H0/BF-HF</option>
+              <option value="Autorisation_Conduite">Autorisation de Conduite</option>
+              <option value="Formation_de_Formateur">Formation de Formateur</option>
+              <option value="Complément_de_Formation">Complément de Formation</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="periode" class="block text-sm font-medium text-slate-700 mb-2">Choisir une période</label>
+            <select id="periode" name="periode" required
+                    class="w-full rounded-xl border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500">
+              <option value="">Sélectionner une période</option>
+              <option value="janvier">Janvier 2026</option>
+              <option value="fevrier">Février 2026</option>
+              <option value="mars">Mars 2026</option>
+              <option value="avril">Avril 2026</option>
+              <option value="mai">Mai 2026</option>
+              <option value="juin">Juin 2026</option>
+              <option value="juillet">Juillet 2026</option>
+              <option value="aout">Août 2026</option>
+              <option value="septembre">Septembre 2026</option>
+              <option value="octobre">Octobre 2025 et 2026</option>
+              <option value="novembre">Novembre 2025 et 2026</option>
+              <option value="decembre">Décembre 2025 et 2026</option>
+              <option value="adefinir">À définir (dans le formulaire de contact)</option>
+            </select>
+          </div>
+
+          <div class="flex items-end justify-start sm:justify-end">
+            <button id="searchBtn" type="button"
+                    class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white font-medium shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              Rechercher
+            </button>
+          </div>
+
+          <p class="sm:col-span-3 text-sm text-slate-700">
+            Vous pouvez demander une date précise via le formulaire de questions dans la page
+            <a href="{{ path('app_contact') }}" class="font-medium text-blue-700 hover:text-blue-800 underline-offset-2 hover:underline">Contact</a>.
+          </p>
+        </form>
+
+        {# Résultats dynamiques (cartes) #}
+        <div id="resultsContainer" class="results-container mt-8 grid gap-4 sm:grid-cols-2"></div>
+
+        {# Formulaire de coordonnées (affiché quand on clique "Pré-réserver") #}
+        <div id="detailsForm" class="details-form mt-8 hidden flex-col gap-4 rounded-2xl bg-white/80 p-6 ring-1 ring-slate-200 backdrop-blur">
+          <h3 class="text-lg font-semibold">Renseignez vos coordonnées</h3>
+
+          <form id="emailForm" name="emailForm" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div class="form-group">
+              <label for="nom" class="block text-sm font-medium text-slate-700 mb-1">Nom</label>
+              <input type="text" id="nom" name="nom" required
+                     class="w-full rounded-xl border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"/>
+            </div>
+            <div class="form-group">
+              <label for="prenom" class="block text-sm font-medium text-slate-700 mb-1">Prénom</label>
+              <input type="text" id="prenom" name="prenom" required
+                     class="w-full rounded-xl border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"/>
+            </div>
+            <div class="form-group sm:col-span-2">
+              <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email</label>
+              <input type="email" id="email" name="email" required
+                     class="w-full rounded-xl border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"/>
+            </div>
+            <div class="form-group sm:col-span-2">
+              <label for="telephone" class="block text-sm font-medium text-slate-700 mb-1">Numéro de téléphone</label>
+              <input type="tel" id="telephone" name="telephone" required
+                     class="w-full rounded-xl border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"/>
+            </div>
+            <div class="form-group sm:col-span-2">
+              <label for="dates" class="block text-sm font-medium text-slate-700 mb-1">Renseignez les dates choisies</label>
+              <input type="text" id="dates" name="dates" required
+                     class="w-full rounded-xl border-slate-300 text-slate-900 focus:border-blue-500 focus:ring-blue-500"/>
+            </div>
+
+            <div class="form-group sm:col-span-2">
+              <span class="block text-sm font-medium text-slate-700 mb-2">Catégories disponibles</span>
+              <div id="categoriesContainer" class="checkbox-group grid grid-cols-2 gap-2 sm:grid-cols-3"></div>
+            </div>
+
+            <div class="sm:col-span-2">
+              <button type="submit"
+                      class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white font-medium shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Envoyer
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {# ---- TÉMOIGNAGES (3 liens Google) ---- #}
+<section id="temoignages" class="relative py-16 bg-[#ECF5FF] text-slate-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <h2 class="text-2xl font-semibold text-center">Ils nous ont fait confiance</h2>
+
+      {# Les cartes seront injectées ici par le JS #}
+      <div id="reviewsList" class="mt-8 space-y-4"></div>
+
+      <div class="mt-8 flex justify-center">
+        <a id="seeMoreReviews" href="#" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-white font-medium shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          Voir plus d’avis
+        </a>
+      </div>
+
+      <p class="mt-3 text-center text-xs text-slate-500">
+        Avis hébergés sur Google. Cliquez pour lire chaque avis dans sa présentation d’origine.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+  
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {# EmailJS CDN (nécessaire pour le formulaire) #}
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
+
+  <script>
+    /* ===== Parallax smooth (60vh) ===== */
+    (function () {
+      const wrapper = document.getElementById('heroScroll');
+      const viewport = document.getElementById('heroViewport');
+      const img = document.getElementById('heroImg');
+      if (!wrapper || !viewport || !img) return;
+
+      let curr = 0, target = 0, rafId = null;
+
+      function computeTarget() {
+        const start = wrapper.getBoundingClientRect().top + window.scrollY;
+        const range = Math.max(1, viewport.offsetHeight);
+        const y = window.scrollY - start;
+        const pRaw = Math.min(Math.max(y / range, 0), 1);
+        target = Math.min(pRaw, 0.97);
+        tick();
+      }
+      function tick() {
+        if (rafId) return;
+        rafId = requestAnimationFrame(function animate() {
+          rafId = null;
+          curr += (target - curr) * 0.12;
+          if (Math.abs(target - curr) < 0.001) curr = target; else rafId = requestAnimationFrame(animate);
+          img.style.objectPosition = `50% ${Math.round(curr * 100)}%`;
+        });
+      }
+      computeTarget();
+      window.addEventListener('scroll', computeTarget, { passive: true });
+      window.addEventListener('resize', computeTarget);
+    })();
+
+    // ===== CARROUSEL — défilement uniquement via les boutons =====
+  (function () {
+    const track = document.getElementById('track');
+    const prev  = document.getElementById('btnPrev');
+    const next  = document.getElementById('btnNext');
+    if (!track || !prev || !next) return;
+
+    // Bloque le scroll manuel
+    track.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault();
+    }, { passive: false });
+
+    let dragging = false, startScroll = 0;
+    track.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      startScroll = track.scrollLeft;
+      try { track.setPointerCapture(e.pointerId); } catch (_) {}
+    });
+    track.addEventListener('pointermove', () => {
+      if (!dragging) return;
+      track.scrollLeft = startScroll;
+    });
+    ['pointerup','pointercancel','pointerleave'].forEach(ev =>
+      track.addEventListener(ev, () => dragging = false)
+    );
+
+    // Largeur d'une carte (ignore les gouttières)
+    function cardFullWidth() {
+      const card = track.querySelector('a[data-card]');
+      if (!card) return 200;
+      const styles = getComputedStyle(track);
+      const gap = parseFloat(styles.columnGap || styles.gap || '16');
+      return card.offsetWidth + gap;
+    }
+
+    function pageSizePx() {
+      const w = track.clientWidth;
+      const cw = cardFullWidth();
+      const perPage = Math.max(1, Math.floor((w + 4) / cw));
+      return perPage * cw;
+    }
+
+    function updateArrows() {
+      const max = Math.max(0, track.scrollWidth - track.clientWidth - 1);
+      const x = track.scrollLeft;
+      const atStart = x <= 0;
+      const atEnd = x >= max;
+
+      [ [prev, atStart], [next, atEnd] ].forEach(([btn, dis]) => {
+        btn.disabled = dis;
+        btn.classList.toggle('opacity-40', dis);
+        btn.classList.toggle('pointer-events-none', dis);
+        btn.setAttribute('aria-disabled', String(dis));
+      });
+    }
+
+    function scrollByPage(dir = 1) {
+      track.scrollBy({ left: dir * pageSizePx(), behavior: 'smooth' });
+    }
+
+    prev.addEventListener('click', () => scrollByPage(-1));
+    next.addEventListener('click', () => scrollByPage( 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  scrollByPage(-1);
+      if (e.key === 'ArrowRight') scrollByPage( 1);
+    });
+
+    window.addEventListener('resize', updateArrows);
+    track.addEventListener('scroll', updateArrows, { passive: true });
+
+    updateArrows();
+  })();
+    /* ===== Réservation ===== */
+
+    
+    try { emailjs.init('RFph6x6gO2WiTN1lv'); } catch (e) { console.warn('EmailJS init error:', e); }
+
+    
+    //   Exemple de format (à ajouter plus tard) :
+    //   { id: 1, nom: "CACES489", periode: "octobre", dates: "Du 20 Octobre au 24 Octobre 2026" }
+    const formations = [
+
+      { id: 89, nom: "CACES482_A_F", periode: "octobre", dates: "Du 20 Octobre au 22 Octobre 2025" },
+            { id: 90, nom: "CACES482_B1_C1_G", periode: "octobre", dates: "Du 22 Octobre au 24 Octobre 2025" },
+            { id: 91, nom: "CACES485", periode: "octobre", dates: "Du 13 Octobre au 14 Octobre 2025" },
+            { id: 92, nom: "CACES485", periode: "octobre", dates: "Du 27 Octobre au 28 Octobre 2025" },
+            { id: 93, nom: "CACES486", periode: "octobre", dates: "Du 14 Octobre au 16 Octobre 2025" },
+            { id: 94, nom: "CACES486", periode: "octobre", dates: "Du 28 Octobre au 30 Octobre 2025" },
+            { id: 95, nom: "CACES489_Recyclage", periode: "octobre", dates: "Du 2 Octobre au 3 Octobre 2025" },
+            { id: 96, nom: "CACES489_Recyclage", periode: "octobre", dates: "Du 13 Octobre au 14 Octobre 2025" },
+            { id: 95, nom: "CACES489_Recyclage", periode: "octobre", dates: "Du 16 Octobre au 17 Octobre 2025" },
+            { id: 96, nom: "CACES489_Recyclage", periode: "octobre", dates: "Du 27 Octobre au 28 Octobre 2025" },
+            { id: 95, nom: "CACES489_Recyclage", periode: "octobre", dates: "Du 30 Octobre au 31 Octobre 2025" },
+            { id: 97, nom: "CACES489", periode: "octobre", dates: "Du 6 Octobre au 10 Octobre 2025" },
+            { id: 98, nom: "CACES489", periode: "octobre", dates: "Du 20 Octobre au 24 Octobre 2025" },
+            { id: 100, nom: "CACES482_A_F", periode: "novembre", dates: "Du 17 Novembre au 19 Novembre 2025" },
+            { id: 101, nom: "CACES482_B1_C1_G", periode: "novembre", dates: "Du 19 Novembre au 21 Novembre 2025" },
+            { id: 102, nom: "CACES485", periode: "novembre", dates: "Du 12 Novembre au 13 Novembre 2025" },
+            { id: 103, nom: "CACES485", periode: "novembre", dates: "Du 24 Novembre au 25 Novembre 2025" },
+            { id: 104, nom: "CACES486", periode: "novembre", dates: "Du 12 Novembre au 14 Novembre 2025" },
+            { id: 105, nom: "CACES486", periode: "novembre", dates: "Du 25 Novembre au 27 Novembre 2025" },
+            { id: 106, nom: "CACES489_Recyclage", periode: "novembre", dates: "Du 12 Novembre au 13 Novembre 2025" },
+            { id: 107, nom: "CACES489_Recyclage", periode: "novembre", dates: "Du 24 Novembre au 25 Novembre 2025" },
+            { id: 107, nom: "CACES489_Recyclage", periode: "novembre", dates: "Du 27 Novembre au 28 Novembre 2025" },
+            { id: 108, nom: "CACES489", periode: "novembre", dates: "Du 3 Novembre au 7 Novembre 2025" },
+            { id: 109, nom: "CACES489", periode: "novembre", dates: "Du 17 Novembre au 21 Novembre 2025" },
+            { id: 110, nom: "CACES482_A_F", periode: "decembre", dates: "Du 15 Décembre au 17 Décembre 2025" },
+            { id: 111, nom: "CACES482_B1_C1_G", periode: "decembre", dates: "Du 17 Décembre au 19 Décembre 2025" },
+            { id: 112, nom: "CACES485", periode: "decembre", dates: "Du 8 Décembre au 9 Décembre 2025" },
+            { id: 113, nom: "CACES486", periode: "decembre", dates: "Du 9 Décembre au 11 Décembre 2025" },
+            { id: 114, nom: "CACES489_Recyclage", periode: "decembre", dates: "Du 8 Décembre au 9 Décembre 2025" },
+            { id: 115, nom: "CACES489_Recyclage", periode: "decembre", dates: "Du 11 Décembre au 12 Décembre 2025" },
+            { id: 116, nom: "CACES489", periode: "decembre", dates: "Du 1er Décembre au 5 Décembre 2025" },
+            { id: 117, nom: "CACES489", periode: "decembre", dates: "Du 15 Décembre au 19 Décembre 2025" },
+            { id: 195, nom: "Elingage", periode: "octobre", dates: "6 Octobre 2025" },
+            { id: 196, nom: "Travail_en_Hauteur", periode: "octobre", dates: "7 Octobre 2025" },
+            { id: 197, nom: "Echafaudage_Roulant", periode: "octobre", dates: "7 Octobre 2025" },
+            { id: 198, nom: "AIPR_Operateur", periode: "octobre", dates: "20 Octobre 2025" },
+            { id: 199, nom: "MAC_SST", periode: "octobre", dates: "6 Octobre 2025" },
+            { id: 200, nom: "MAC_SST", periode: "octobre", dates: "20 Octobre 2025" },
+            { id: 201, nom: "Habilitation_Electrique_B0_H0_BS_BE-MAN_BF-HF", periode: "octobre", dates: "Du 27 Octobre au 28 Octobre 2025" },
+            { id: 202, nom: "Elingage", periode: "novembre", dates: "3 Novembre 2025" },
+            { id: 203, nom: "Travail_en_Hauteur", periode: "novembre", dates: "4 Novembre 2025" },
+            { id: 204, nom: "Echafaudage_Roulant", periode: "novembre", dates: "4 Novembre 2025" },
+            { id: 205, nom: "AIPR_Operateur", periode: "novembre", dates: "17 Novembre 2025" },
+            { id: 206, nom: "MAC_SST", periode: "novembre", dates: "3 Novembre 2025" },
+            { id: 207, nom: "SST", periode: "novembre", dates: "Du 17 Novembre au 18 Novembre 2025" },
+            { id: 208, nom: "MAC_SST", periode: "novembre", dates: "24 Novembre 2025" },
+            { id: 210, nom: "Habilitation_Electrique_B0_H0_BS_BE-MAN_BF-HF", periode: "novembre", dates: "Du 24 Novembre au 25 Novembre 2025" },
+            { id: 211, nom: "Habilitation_Electrique_B1_B2_BR_BC_Recyclage", periode: "novembre", dates: "Du 3 Novembre au 4 Novembre 2025" },
+            { id: 212, nom: "Habilitation_Electrique_B1_B2_BR_BC", periode: "novembre", dates: "5 Novembre 2025" },
+            { id: 213, nom: "Elingage", periode: "decembre", dates: "1er Décembre 2025" },
+            { id: 214, nom: "Travail_en_Hauteur", periode: "decembre", dates: "2 Décembre 2025" },
+            { id: 215, nom: "Echafaudage_Roulant", periode: "decembre", dates: "2 Décembre 2025" },
+            { id: 216, nom: "AIPR_Operateur", periode: "decembre", dates: "15 Décembre 2025" },
+            { id: 217, nom: "MAC_SST", periode: "decembre", dates: "8 Décembre 2025" },
+            { id: 218, nom: "Habilitation_Electrique_B0_H0_BS_BE-MAN_BF-HF", periode: "decembre", dates: "Du 22 Décembre au 23 Décembre 2025" },
+            { id: 219, nom: "CACES482_A_F", periode: "janvier", dates: "Du 19 Janvier au 21 Janvier 2026" },
+            { id: 220, nom: "CACES482_B1_C1_G", periode: "janvier", dates: "Du 21 Janvier au 23 Janvier 2026" },
+            { id: 221, nom: "CACES489", periode: "janvier", dates: "Du 5 Janvier au 9 Janvier 2026" },
+            { id: 222, nom: "CACES489", periode: "janvier", dates: "Du 19 Janvier au 23 Janvier 2026" },
+            { id: 223, nom: "CACES489_Recyclage", periode: "janvier", dates: "Du 12 Janvier au 13 Janvier 2026" },
+            { id: 224, nom: "CACES489_Recyclage", periode: "janvier", dates: "Du 15 Janvier au 16 Janvier 2026" },
+            { id: 225, nom: "CACES489_Recyclage", periode: "janvier", dates: "Du 26 Janvier au 27 Janvier 2026" },
+            { id: 226, nom: "CACES489_Recyclage", periode: "janvier", dates: "Du 29 Janvier au 30 Janvier 2026" },
+            { id: 227, nom: "CACES485", periode: "janvier", dates: "Du 12 Janvier au 13 Janvier 2026" },
+            { id: 228, nom: "CACES485", periode: "janvier", dates: "Du 15 Janvier au 16 Janvier 2026" },
+            { id: 229, nom: "CACES485", periode: "janvier", dates: "Du 26 Janvier au 27 Janvier 2026" },
+            { id: 230, nom: "CACES485", periode: "janvier", dates: "Du 29 Janvier au 30 Janvier 2026" },
+            { id: 231, nom: "CACES486", periode: "janvier", dates: "13 Janvier 2026" },
+            { id: 232, nom: "CACES486_Recyclage", periode: "janvier", dates: "Du 14 Janvier au 15 Janvier 2026" },
+            { id: 233, nom: "CACES486", periode: "janvier", dates: "27 Janvier 2026" },
+            { id: 234, nom: "CACES486_Recyclage", periode: "janvier", dates: "Du 28 Janvier au 29 Janvier 2026" },
+            { id: 235, nom: "Elingage", periode: "janvier", dates: "19 Janvier 2026" },
+            { id: 236, nom: "Echafaudage_Fixe/Roulant", periode: "janvier", dates: "Du 19 Janvier au 20 Janvier 2026" },
+            { id: 237, nom: "Travail_en_Hauteur", periode: "janvier", dates: "20 Janvier 2026" },
+            { id: 238, nom: "AIPR", periode: "janvier", dates: "16 Janvier 2026" },
+            { id: 239, nom: "SST", periode: "janvier", dates: "Du 12 Janvier au 13 Janvier 2026" },
+            { id: 240, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "janvier", dates: "Du 26 Janvier au 28 Janvier 2026" },
+            { id: 241, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "janvier", dates: "Du 26 Janvier au 27 Janvier 2026" },
+            { id: 242, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "janvier", dates: "26 Janvier 2026" },
+            { id: 243, nom: "CACES482_A_F", periode: "fevrier", dates: "Du 19 Février au 21 Février 2026" },
+            { id: 244, nom: "CACES482_B1_C1_G", periode: "fevrier", dates: "Du 21 Février au 23 Février 2026" },
+            { id: 245, nom: "CACES489", periode: "fevrier", dates: "Du 2 Février au 6 Février 2026" },
+            { id: 246, nom: "CACES489", periode: "fevrier", dates: "Du 16 Février au 20 Février 2026" },
+            { id: 247, nom: "CACES489_Recyclage", periode: "fevrier", dates: "Du 9 Février au 10 Février 2026" },
+            { id: 248, nom: "CACES489_Recyclage", periode: "fevrier", dates: "Du 12 Février au 13 Février 2026" },
+            { id: 249, nom: "CACES489_Recyclage", periode: "fevrier", dates: "Du 23 Février au 24 Février 2026" },
+            { id: 250, nom: "CACES489_Recyclage", periode: "fevrier", dates: "Du 26 Février au 27 Février 2026" },
+            { id: 251, nom: "CACES485", periode: "fevrier", dates: "Du 9 Février au 10 Février 2026" },
+            { id: 252, nom: "CACES485", periode: "fevrier", dates: "Du 12 Février au 13 Février 2026" },
+            { id: 253, nom: "CACES485", periode: "fevrier", dates: "Du 23 Février au 24 Février 2026" },
+            { id: 254, nom: "CACES485", periode: "fevrier", dates: "Du 26 Février au 27 Février 2026" },
+            { id: 255, nom: "CACES486", periode: "fevrier", dates: "10 Février 2026" },
+            { id: 256, nom: "CACES486_Recyclage", periode: "fevrier", dates: "Du 11 Février au 12 Février 2026" },
+            { id: 257, nom: "CACES486", periode: "fevrier", dates: "24 Février 2026" },
+            { id: 258, nom: "CACES486_Recyclage", periode: "fevrier", dates: "Du 25 Février au 26 Février 2026" },
+            { id: 259, nom: "Elingage", periode: "fevrier", dates: "16 Février 2026" },
+            { id: 260, nom: "Travail_en_Hauteur", periode: "fevrier", dates: "17 Février 2026" },
+            { id: 261, nom: "AIPR", periode: "fevrier", dates: "10 Février 2026" },
+            { id: 262, nom: "MAC_SST", periode: "fevrier", dates: "23 Février 2026" },
+            { id: 263, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "fevrier", dates: "Du 23 Février au 25 Février 2026" },
+            { id: 264, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "fevrier", dates: "Du 23 Février au 24 Février 2026" },
+            { id: 265, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "fevrier", dates: "23 Février 2026" },
+            { id: 266, nom: "CACES482_A_F", periode: "mars", dates: "Du 16 Mars au 18 Mars 2026" },
+            { id: 267, nom: "CACES482_B1_C1_G", periode: "mars", dates: "Du 18 Mars au 20 Mars 2026" },
+            { id: 268, nom: "CACES489", periode: "mars", dates: "Du 2 Mars au 6 Mars 2026" },
+            { id: 269, nom: "CACES489", periode: "mars", dates: "Du 16 Mars au 20 Mars 2026" },
+            { id: 270, nom: "CACES489_Recyclage", periode: "mars", dates: "Du 9 Mars au 10 Mars 2026" },
+            { id: 271, nom: "CACES489_Recyclage", periode: "mars", dates: "Du 12 Mars au 13 Mars 2026" },
+            { id: 272, nom: "CACES489_Recyclage", periode: "mars", dates: "Du 23 Mars au 24 Mars 2026" },
+            { id: 273, nom: "CACES489_Recyclage", periode: "mars", dates: "Du 26 Mars au 27 Mars 2026" },
+            { id: 274, nom: "CACES485", periode: "mars", dates: "Du 9 Mars au 10 Mars 2026" },
+            { id: 275, nom: "CACES485", periode: "mars", dates: "Du 12 Mars au 13 Mars 2026" },
+            { id: 276, nom: "CACES485", periode: "mars", dates: "Du 23 Mars au 24 Mars 2026" },
+            { id: 277, nom: "CACES485", periode: "mars", dates: "Du 26 Mars au 27 Mars 2026" },
+            { id: 278, nom: "CACES486", periode: "mars", dates: "10 Mars 2026" },
+            { id: 279, nom: "CACES486_Recyclage", periode: "mars", dates: "Du 11 Mars au 12 Mars 2026" },
+            { id: 280, nom: "CACES486", periode: "mars", dates: "24 Mars 2026" },
+            { id: 290, nom: "CACES486_Recyclage", periode: "mars", dates: "Du 25 Mars au 26 Mars 2026" },
+            { id: 291, nom: "Elingage", periode: "mars", dates: "16 Mars 2026" },
+            { id: 292, nom: "Travail_en_Hauteur", periode: "mars", dates: "17 Mars 2026" },
+            { id: 293, nom: "Echafaudage_Fixe/Roulant", periode: "mars", dates: "Du 16 Mars au 17 Mars 2026" },
+            { id: 294, nom: "AIPR", periode: "mars", dates: "10 Mars 2026" },
+            { id: 295, nom: "SST", periode: "mars", dates: "Du 9 Mars au 10 Mars 2026" },
+            { id: 296, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "mars", dates: "Du 23 Mars au 25 Mars 2026" },
+            { id: 297, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "mars", dates: "Du 23 Mars au 24 Mars 2026" },
+            { id: 298, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "mars", dates: "23 Mars 2026" },
+            { id: 299, nom: "CACES482_A_F", periode: "avril", dates: "Du 13 Avril au 15 Avril 2026" },
+            { id: 300, nom: "CACES482_B1_C1_G", periode: "avril", dates: "Du 15 Avril au 17 Avril 2026" },
+            { id: 301, nom: "CACES489", periode: "avril", dates: "Du 30 Mars au 3 Avril 2026" },
+            { id: 302, nom: "CACES489", periode: "avril", dates: "Du 13 Avril au 17 Avril 2026" },
+            { id: 303, nom: "CACES489", periode: "avril", dates: "Du 27 Avril au 30 Avril 2026" },
+            { id: 304, nom: "CACES489_Recyclage", periode: "avril", dates: "Du 9 Avril au 10 Avril 2026" },
+            { id: 305, nom: "CACES489_Recyclage", periode: "avril", dates: "Du 20 Avril au 21 Avril 2026" },
+            { id: 306, nom: "CACES489_Recyclage", periode: "avril", dates: "Du 23 Avril au 24 Avril 2026" },
+            { id: 307, nom: "CACES485", periode: "avril", dates: "Du 9 Avril au 10 Avril 2026" },
+            { id: 308, nom: "CACES485", periode: "avril", dates: "Du 20 Avril au 21 Avril 2026" },
+            { id: 309, nom: "CACES485", periode: "avril", dates: "Du 23 Avril au 24 Avril 2026" },
+            { id: 310, nom: "CACES486", periode: "avril", dates: "7 Avril 2026" },
+            { id: 311, nom: "CACES486_Recyclage", periode: "avril", dates: "Du 8 Avril au 9 Avril 2026" },
+            { id: 312, nom: "CACES486", periode: "avril", dates: "21 Avril 2026" },
+            { id: 313, nom: "CACES486_Recyclage", periode: "avril", dates: "Du 22 Avril au 23 Avril 2026" },
+            { id: 314, nom: "Elingage", periode: "avril", dates: "13 Avril 2026" },
+            { id: 315, nom: "Travail_en_Hauteur", periode: "avril", dates: "14 Avril 2026" },
+            { id: 316, nom: "AIPR", periode: "avril", dates: "7 Avril 2026" },
+            { id: 317, nom: "MAC_SST", periode: "avril", dates: "20 Avril 2026" },
+            { id: 318, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "avril", dates: "Du 20 Avril au 22 Avril 2026" },
+            { id: 319, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "avril", dates: "Du 20 Avril au 21 Avril 2026" },
+            { id: 320, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "avril", dates: "20 Avril 2026" },
+            { id: 321, nom: "CACES482_A_F", periode: "mai", dates: "Du 18 Mai au 20 Mai 2026" },
+            { id: 322, nom: "CACES482_B1_C1_G", periode: "mai", dates: "Du 20 Mai au 22 Mai 2026" },
+            { id: 323, nom: "CACES489", periode: "mai", dates: "Du 4 Mai au 7 Mai 2026" },
+            { id: 324, nom: "CACES489", periode: "mai", dates: "Du 18 Mai au 22 Mai 2026" },
+            { id: 325, nom: "CACES489_Recyclage", periode: "mai", dates: "Du 11 Mai au 12 Mai 2026" },
+            { id: 326, nom: "CACES489_Recyclage", periode: "mai", dates: "Du 28 Mai au 29 Mai 2026" },
+            { id: 327, nom: "CACES485", periode: "mai", dates: "Du 11 Mai au 12 Mai 2026" },
+            { id: 328, nom: "CACES485", periode: "mai", dates: "Du 28 Mai au 29 Mai 2026" },
+            { id: 329, nom: "CACES486", periode: "mai", dates: "11 Mai 2026" },
+            { id: 330, nom: "CACES486_Recyclage", periode: "mai", dates: "Du 12 Mai au 13 Mai 2026" },
+            { id: 331, nom: "CACES486", periode: "mai", dates: "26 Mai 2026" },
+            { id: 332, nom: "CACES486_Recyclage", periode: "mai", dates: "Du 27 Mai au 28 Mai 2026" },
+            { id: 333, nom: "Elingage", periode: "mai", dates: "18 Mai 2026" },
+            { id: 334, nom: "Travail_en_Hauteur", periode: "mai", dates: "19 Mai 2026" },
+            { id: 335, nom: "Echafaudage_Fixe/Roulant", periode: "mai", dates: "Du 18 Mai au 19 Mai 2026" },
+            { id: 336, nom: "AIPR", periode: "mai", dates: "12 Mai 2026" },
+            { id: 337, nom: "SST", periode: "mai", dates: "Du 26 Mai au 27 Mai 2026" },
+            { id: 338, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "mai", dates: "Du 26 Mai au 28 Mai 2026" },
+            { id: 339, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "mai", dates: "Du 26 Mai au 27 Mai 2026" },
+            { id: 340, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "mai", dates: "26 Mai 2026" },
+            { id: 341, nom: "CACES482_A_F", periode: "juin", dates: "Du 15 Juin au 17 Juin 2026" },
+            { id: 342, nom: "CACES482_B1_C1_G", periode: "juin", dates: "Du 17 Juin au 19 Juin 2026" },
+            { id: 343, nom: "CACES489", periode: "juin", dates: "Du 1er Juin au 5 Juin 2026" },
+            { id: 344, nom: "CACES489", periode: "juin", dates: "Du 15 Juin au 19 Juin 2026" },
+            { id: 345, nom: "CACES489_Recyclage", periode: "juin", dates: "Du 8 Juin au 9 Juin 2026" },
+            { id: 346, nom: "CACES489_Recyclage", periode: "juin", dates: "Du 11 Juin au 12 Juin 2026" },
+            { id: 347, nom: "CACES489_Recyclage", periode: "juin", dates: "Du 22 Juin au 23 Juin 2026" },
+            { id: 348, nom: "CACES489_Recyclage", periode: "juin", dates: "Du 25 Juin au 26 Juin 2026" },
+            { id: 349, nom: "CACES485", periode: "juin", dates: "Du 8 Juin au 9 Juin 2026" },
+            { id: 350, nom: "CACES485", periode: "juin", dates: "Du 11 Juin au 12 Juin 2026" },
+            { id: 351, nom: "CACES485", periode: "juin", dates: "Du 22 Juin au 23 Juin 2026" },
+            { id: 352, nom: "CACES485", periode: "juin", dates: "Du 25 Juin au 26 Juin 2026" },
+            { id: 353, nom: "CACES486", periode: "juin", dates: "9 Juin 2026" },
+            { id: 354, nom: "CACES486_Recyclage", periode: "juin", dates: "Du 10 Juin au 11 Juin 2026" },
+            { id: 355, nom: "CACES486", periode: "juin", dates: "23 Juin 2026" },
+            { id: 356, nom: "CACES486_Recyclage", periode: "juin", dates: "Du 24 Juin au 25 Juin 2026" },
+            { id: 357, nom: "Elingage", periode: "juin", dates: "15 Juin 2026" },
+            { id: 358, nom: "Travail_en_Hauteur", periode: "juin", dates: "16 Juin 2026" },
+            { id: 360, nom: "AIPR", periode: "juin", dates: "12 Juin 2026" },
+            { id: 361, nom: "MAC_SST", periode: "juin", dates: "22 Juin 2026" },
+            { id: 362, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "juin", dates: "Du 22 Juin au 24 Juin 2026" },
+            { id: 363, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "juin", dates: "Du 22 Juin au 23 Juin 2026" },
+            { id: 364, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "juin", dates: "22 Juin 2026" },
+            { id: 365, nom: "CACES482_A_F", periode: "juillet", dates: "Du 20 Juillet au 22 Juillet 2026" },
+            { id: 366, nom: "CACES482_B1_C1_G", periode: "juillet", dates: "Du 22 Juillet au 24 Juillet 2026" },
+            { id: 367, nom: "CACES489", periode: "juillet", dates: "Du 29 Juin au 3 Juillet 2026" },
+            { id: 368, nom: "CACES489", periode: "juillet", dates: "Du 20 Juillet au 24 Juillet 2026" },
+            { id: 369, nom: "CACES489_Recyclage", periode: "juillet", dates: "Du 6 Juillet au 7 Juillet 2026" },
+            { id: 370, nom: "CACES489_Recyclage", periode: "juillet", dates: "Du 9 Juillet au 10 Juillet 2026" },
+            { id: 371, nom: "CACES489_Recyclage", periode: "juillet", dates: "Du 27 Juillet au 28 Juillet 2026" },
+            { id: 372, nom: "CACES489_Recyclage", periode: "juillet", dates: "Du 30 Juillet au 31 Juillet 2026" },
+            { id: 373, nom: "CACES485", periode: "juillet", dates: "Du 6 Juillet au 7 Juillet 2026" },
+            { id: 374, nom: "CACES485", periode: "juillet", dates: "Du 9 Juillet au 10 Juillet 2026" },
+            { id: 375, nom: "CACES485", periode: "juillet", dates: "Du 27 Juillet au 28 Juillet 2026" },
+            { id: 376, nom: "CACES485", periode: "juillet", dates: "Du 30 Juillet au 31 Juillet 2026" },
+            { id: 377, nom: "CACES486", periode: "juillet", dates: "7 Juillet 2026" },
+            { id: 378, nom: "CACES486_Recyclage", periode: "juillet", dates: "Du 8 Juillet au 9 Juillet 2026" },
+            { id: 379, nom: "CACES486", periode: "juillet", dates: "28 Juillet 2026" },
+            { id: 380, nom: "CACES486_Recyclage", periode: "juillet", dates: "Du 29 Juillet au 30 Juillet 2026" },
+            { id: 381, nom: "Elingage", periode: "juillet", dates: "20 Juillet 2026" },
+            { id: 382, nom: "Travail_en_Hauteur", periode: "juillet", dates: "21 Juillet 2026" },
+            { id: 383, nom: "Echafaudage_Fixe/Roulant", periode: "juillet", dates: "Du 20 Juillet au 21 Juillet 2026" },
+            { id: 384, nom: "AIPR", periode: "juillet", dates: "15 Juillet 2026" },
+            { id: 385, nom: "SST", periode: "juillet", dates: "Du 27 Juillet au 28 Juillet 2026" },
+            { id: 386, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "juillet", dates: "Du 27 Juillet au 29 Juillet 2026" },
+            { id: 387, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "juillet", dates: "Du 27 Juillet au 28 Juillet 2026" },
+            { id: 388, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "juillet", dates: "27 Juillet 2026" },
+            { id: 389, nom: "CACES489", periode: "aout", dates: "Du 24 Août au 28 Août 2026" },
+            { id: 390, nom: "CACES482_A_F", periode: "septembre", dates: "Du 21 Septembre au 23 Septembre 2026" },
+            { id: 391, nom: "CACES482_B1_C1_G", periode: "septembre", dates: "Du 23 Septembre au 25 Septembre 2026" },
+            { id: 392, nom: "CACES489", periode: "septembre", dates: "Du 7 Septembre au 11 Septembre 2026" },
+            { id: 393, nom: "CACES489", periode: "septembre", dates: "Du 21 Septembre au 25 Septembre 2026" },
+            { id: 394, nom: "CACES489_Recyclage", periode: "septembre", dates: "Du 31 Août au 1er Septembre 2026" },
+            { id: 395, nom: "CACES489_Recyclage", periode: "septembre", dates: "Du 3 Septembre au 4 Septembre 2026" },
+            { id: 396, nom: "CACES489_Recyclage", periode: "septembre", dates: "Du 14 Septembre au 15 Septembre 2026" },
+            { id: 397, nom: "CACES489_Recyclage", periode: "septembre", dates: "Du 17 Septembre au 18 Septembre 2026" },
+            { id: 398, nom: "CACES489_Recyclage", periode: "septembre", dates: "Du 28 Septembre au 29 Septembre 2026" },
+            { id: 399, nom: "CACES485", periode: "septembre", dates: "Du 31 Août au 1er Septembre 2026" },
+            { id: 400, nom: "CACES485", periode: "septembre", dates: "Du 3 Septembre au 4 Septembre 2026" },
+            { id: 401, nom: "CACES485", periode: "septembre", dates: "Du 14 Septembre au 15 Septembre 2026" },
+            { id: 402, nom: "CACES485", periode: "septembre", dates: "Du 17 Septembre au 18 Septembre 2026" },
+            { id: 403, nom: "CACES485", periode: "septembre", dates: "Du 28 Septembre au 29 Septembre 2026" },
+            { id: 404, nom: "CACES486", periode: "septembre", dates: "1er Septembre 2026" },
+            { id: 405, nom: "CACES486_Recyclage", periode: "septembre", dates: "Du 2 Septembre au 3 Septembre 2026" },
+            { id: 406, nom: "CACES486", periode: "septembre", dates: "15 Septembre 2026" },
+            { id: 407, nom: "CACES486_Recyclage", periode: "septembre", dates: "Du 16 Septembre au 17 Septembre 2026" },
+            { id: 408, nom: "CACES486", periode: "septembre", dates: "29 Septembre 2026" },
+            { id: 409, nom: "Elingage", periode: "septembre", dates: "21 Septembre 2026" },
+            { id: 410, nom: "Travail_en_Hauteur", periode: "septembre", dates: "22 Septembre 2026" },
+            { id: 411, nom: "Echafaudage_Fixe/Roulant", periode: "septembre", dates: "Du 21 Septembre au 22 Septembre 2026" },
+            { id: 412, nom: "AIPR", periode: "septembre", dates: "15 Septembre 2026" },
+            { id: 413, nom: "MAC_SST", periode: "septembre", dates: "14 Septembre 2026" },
+            { id: 414, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "septembre", dates: "Du 28 Septembre au 30 Septembre 2026" },
+            { id: 415, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "septembre", dates: "Du 28 Septembre au 29 Septembre 2026" },
+            { id: 416, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "septembre", dates: "28 Septembre 2026" },
+            { id: 417, nom: "CACES482_A_F", periode: "octobre", dates: "Du 19 Octobre au 21 Octobre 2026" },
+            { id: 418, nom: "CACES482_B1_C1_G", periode: "octobre", dates: "Du 21 Octobre au 23 Octobre 2026" },
+            { id: 419, nom: "CACES489", periode: "octobre", dates: "Du 5 Octobre au 9 Octobre 2026" },
+            { id: 420, nom: "CACES489", periode: "octobre", dates: "Du 19 Octobre au 23 Octobre 2026" },
+            { id: 421, nom: "CACES489_Recyclage", periode: "octobre", dates: "Du 1er Octobre au 2 Octobre 2026" },
+            { id: 422, nom: "CACES489_Recyclage", periode: "octobre", dates: "Du 12 Octobre au 13 Octobre 2026" },
+            { id: 423, nom: "CACES489_Recyclage", periode: "octobre", dates: "Du 15 Octobre au 16 Octobre 2026" },
+            { id: 424, nom: "CACES489_Recyclage", periode: "octobre", dates: "Du 26 Octobre au 27 Octobre 2026" },
+            { id: 425, nom: "CACES489_Recyclage", periode: "octobre", dates: "Du 29 Octobre au 30 Octobre 2026" },
+            { id: 426, nom: "CACES485", periode: "octobre", dates: "Du 12 Octobre au 13 Octobre 2026" },
+            { id: 427, nom: "CACES485", periode: "octobre", dates: "Du 15 Octobre au 16 Octobre 2026" },
+            { id: 428, nom: "CACES485", periode: "octobre", dates: "Du 26 Octobre au 27 Octobre 2026" },
+            { id: 429, nom: "CACES485", periode: "octobre", dates: "Du 29 Octobre au 30 Octobre 2026" },
+            { id: 430, nom: "CACES486_Recyclage", periode: "octobre", dates: "Du 30 Septembre au 1er Octobre 2026" },
+            { id: 431, nom: "CACES486", periode: "octobre", dates: "13 Octobre 2026" },
+            { id: 432, nom: "CACES486_Recyclage", periode: "octobre", dates: "Du 14 Octobre au 15 Octobre 2026" },
+            { id: 433, nom: "CACES486", periode: "octobre", dates: "27 Octobre 2026" },
+            { id: 434, nom: "CACES486_Recyclage", periode: "octobre", dates: "Du 28 Octobre au 29 Octobre 2026" },
+            { id: 435, nom: "Elingage", periode: "octobre", dates: "19 Octobre 2026" },
+            { id: 436, nom: "Travail_en_Hauteur", periode: "octobre", dates: "20 Octobre 2026" },
+            { id: 437, nom: "AIPR", periode: "octobre", dates: "13 Octobre 2026" },
+            { id: 438, nom: "SST", periode: "octobre", dates: "Du 12 Octobre au 13 Octobre 2026" },
+            { id: 439, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "octobre", dates: "Du 26 Octobre au 28 Octobre 2026" },
+            { id: 440, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "octobre", dates: "Du 26 Octobre au 27 Octobre 2026" },
+            { id: 441, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "octobre", dates: "26 Octobre 2026" },
+            { id: 442, nom: "CACES482_A_F", periode: "novembre", dates: "Du 16 Novembre au 18 Novembre 2026" },
+            { id: 443, nom: "CACES482_B1_C1_G", periode: "novembre", dates: "Du 18 Novembre au 20 Novembre 2026" },
+            { id: 444, nom: "CACES489", periode: "novembre", dates: "Du 2 Novembre au 6 Novembre 2026" },
+            { id: 445, nom: "CACES489", periode: "novembre", dates: "Du 16 Novembre au 20 Novembre 2026" },
+            { id: 446, nom: "CACES489_Recyclage", periode: "novembre", dates: "Du 9 Novembre au 10 Novembre 2026" },
+            { id: 447, nom: "CACES489_Recyclage", periode: "novembre", dates: "Du 12 Novembre au 13 Novembre 2026" },
+            { id: 448, nom: "CACES489_Recyclage", periode: "novembre", dates: "Du 23 Novembre au 24 Novembre 2026" },
+            { id: 449, nom: "CACES489_Recyclage", periode: "novembre", dates: "Du 26 Novembre au 27 Novembre 2026" },
+            { id: 450, nom: "CACES485", periode: "novembre", dates: "Du 9 Novembre au 10 Novembre 2026" },
+            { id: 451, nom: "CACES485", periode: "novembre", dates: "Du 12 Novembre au 13 Novembre 2026" },
+            { id: 452, nom: "CACES485", periode: "novembre", dates: "Du 23 Novembre au 24 Novembre 2026" },
+            { id: 453, nom: "CACES485", periode: "novembre", dates: "Du 26 Novembre au 27 Novembre 2026" },
+            { id: 454, nom: "CACES486", periode: "novembre", dates: "3 Novembre 2026" },
+            { id: 455, nom: "CACES486_Recyclage", periode: "novembre", dates: "Du 4 Novembre au 5 Novembre 2026" },
+            { id: 456, nom: "CACES486", periode: "novembre", dates: "24 Novembre 2026" },
+            { id: 457, nom: "CACES486_Recyclage", periode: "novembre", dates: "Du 25 Novembre au 26 Novembre 2026" },
+            { id: 458, nom: "Elingage", periode: "novembre", dates: "16 Novembre 2026" },
+            { id: 459, nom: "Travail_en_Hauteur", periode: "novembre", dates: "17 Novembre 2026" },
+            { id: 460, nom: "Echafaudage_Fixe/Roulant", periode: "novembre", dates: "Du 16 Novembre au 17 Novembre 2026" },
+            { id: 461, nom: "AIPR", periode: "novembre", dates: "10 Novembre 2026" },
+            { id: 462, nom: "MAC_SST", periode: "novembre", dates: "9 Novembre 2026" },
+            { id: 463, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "novembre", dates: "Du 23 Novembre au 25 Novembre 2026" },
+            { id: 464, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "novembre", dates: "Du 23 Novembre au 24 Novembre 2026" },
+            { id: 465, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "novembre", dates: "23 Novembre 2026" },
+            { id: 466, nom: "CACES482_A_F", periode: "decembre", dates: "Du 14 Décembre au 16 Décembre 2026" },
+            { id: 467, nom: "CACES482_B1_C1_G", periode: "decembre", dates: "Du 16 Décembre au 18 Décembre 2026" },
+            { id: 468, nom: "CACES489", periode: "decembre", dates: "Du 30 Novembre au 4 Décembre 2026" },
+            { id: 469, nom: "CACES489", periode: "decembre", dates: "Du 14 Décembre au 18 Décembre 2026" },
+            { id: 470, nom: "CACES489_Recyclage", periode: "decembre", dates: "Du 7 Décembre au 8 décembre 2026" },
+            { id: 471, nom: "CACES489_Recyclage", periode: "decembre", dates: "Du 10 Décembre au 11 Décembre 2026" },
+            { id: 472, nom: "CACES489_Recyclage", periode: "decembre", dates: "Du 21 Décembre au 22 Décembre 2026" },
+            { id: 473, nom: "CACES485", periode: "decembre", dates: "Du 7 Décembre au 8 Décembre 2026" },
+            { id: 474, nom: "CACES485", periode: "decembre", dates: "Du 10 Décembre au 11 Décembre 2026" },
+            { id: 475, nom: "CACES485", periode: "decembre", dates: "Du 21 Décembre au 22 Décembre 2026" },
+            { id: 476, nom: "CACES486", periode: "decembre", dates: "8 Décembre 2026" },
+            { id: 477, nom: "CACES486_Recyclage", periode: "decembre", dates: "Du 9 Décembre au 10 Décembre 2026" },
+            { id: 478, nom: "CACES486", periode: "decembre", dates: "21 Décembre 2026" },
+            { id: 479, nom: "CACES486_Recyclage", periode: "decembre", dates: "Du 22 Décembre au 23 Décembre 2026" },
+            { id: 480, nom: "Elingage", periode: "decembre", dates: "14 Décembre 2026" },
+            { id: 481, nom: "Travail_en_Hauteur", periode: "decembre", dates: "15 Décembre 2026" },
+            { id: 482, nom: "AIPR", periode: "decembre", dates: "8 Décembre 2026" },
+            { id: 483, nom: "SST", periode: "decembre", dates: "Du 7 Décembre au 8 Décembre 2026" },
+            { id: 484, nom: "Habilitation_Electrique_B1_B2_BR_BC_BP_PV_BEMesurage", periode: "decembre", dates: "Du 7 Décembre au 9 Décembre 2026" },
+            { id: 485, nom: "Habilitation_Electrique_BS_BE_Manoeuvre_Recyclage", periode: "decembre", dates: "Du 7 Décembre au 8 Décembre 2026" },
+            { id: 486, nom: "Habilitation_Electrique_B0_H0_BF-HF", periode: "decembre", dates: "7 Décembre 2026" },
+
+    ];
+
+    
+    const cacesCategories = {
+      CACES489: ["1A", "1B", "2B", "3", "4", "5"],
+      CACES489_Recyclage: ["1A", "1B", "2B", "3", "4", "5"],
+      CACES486: ["A", "B", "Porte Engin", "AIPR"],
+      CACES486_Recyclage: ["A", "B"],
+      CACES482_A_F: ["A", "F", "Option Télécommandé", "Porte Engin", "AIPR"],
+      CACES482_B1_C1_G: ["B1", "C1", "G", "Option Télécommandé", "Porte Engin", "AIPR"],
+      CACES485: ["1", "2"],
+      Autorisation_Conduite: ["R482", "R484", "R485", "R486", "R489", "R490", "R366", "Engins Spécifiques"],
+      Echafaudage_Roulant: ["Réception Vérification", "Montage Démontage", "Utilisation"],
+      Echafaudage_Fixe: ["Réception Vérification", "Montage Démontage", "Utilisation"],
+      "Echafaudage_Fixe/Roulant": ["Réception Vérification", "Montage Démontage", "Utilisation"],
+      Echafaudage_Fixe_Roulant: ["Réception Vérification", "Montage Démontage", "Utilisation"], // alias
+      AIPR: ["Opérateur", "Encadrant", "Concepteur"],
+    };
+
+    
+    const resultsContainer = document.getElementById('resultsContainer');
+    const detailsForm = document.getElementById('detailsForm');
+    const categoriesContainer = document.getElementById('categoriesContainer');
+
+    
+    function renderResults(list, { formationLabel = null } = {}) {
+      resultsContainer.innerHTML = '';
+
+      if (!list.length) {
+        // Fallback : on montre une carte “Aucune date publiée” avec bouton Pré-réserver
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl ring-1 ring-slate-200 p-4 bg-white shadow-sm flex flex-col gap-2';
+        card.innerHTML = `
+          <div class="text-xs uppercase tracking-wide text-slate-500">${formationLabel || 'Formation'}</div>
+          <div class="font-semibold text-slate-900">Aucune date publiée pour cette période.</div>
+          <button class="mt-2 inline-flex items-center justify-center rounded-lg bg-blue-600 px-3 py-2 text-white text-sm font-medium hover:bg-blue-700">Pré-réserver</button>
+        `;
+        card.querySelector('button').addEventListener('click', () => openDetailsForm(formationLabel));
+        resultsContainer.appendChild(card);
+        return;
+      }
+
+      // Sinon : vraies dates
+      list.forEach(f => {
+        const card = document.createElement('div');
+        card.className = 'rounded-2xl ring-1 ring-slate-200 p-4 bg-white shadow-sm flex flex-col gap-2';
+        card.innerHTML = `
+          <div class="text-xs uppercase tracking-wide text-slate-500">${f.nom}</div>
+          <div class="font-semibold text-slate-900">${f.dates}</div>
+          <button class="mt-2 inline-flex items-center justify-center rounded-lg bg-blue-600 px-3 py-2 text-white text-sm font-medium hover:bg-blue-700">Pré-réserver</button>
+        `;
+        card.querySelector('button').addEventListener('click', () => openDetailsForm(f.nom));
+        resultsContainer.appendChild(card);
+      });
+    }
+
+    
+    function showResults() {
+      const formationSelect = document.getElementById('formation')?.value || '';
+      const periodeSelect = document.getElementById('periode')?.value || '';
+
+      if (!formationSelect || !periodeSelect) {
+        resultsContainer.innerHTML = '<p class="text-slate-700">Sélectionnez une formation <em>et</em> une période, puis cliquez sur Rechercher.</p>';
+        detailsForm.classList.add('hidden');
+        return;
+      }
+
+      if (periodeSelect === 'adefinir') {
+        // Pas de dates → on ouvre quand même le formulaire
+        renderResults([], { formationLabel: formationSelect });
+        openDetailsForm(formationSelect);
+        return;
+      }
+
+      const filtered = formations.filter(f => f.nom === formationSelect && f.periode === periodeSelect);
+      renderResults(filtered, { formationLabel: formationSelect });
+      detailsForm.classList.add('hidden'); // masqué tant qu’on n’a pas cliqué “Pré-réserver”
+    }
+
+    
+    function openDetailsForm(formation) {
+      detailsForm.classList.remove('hidden');
+      categoriesContainer.innerHTML = '';
+
+      const key = cacesCategories[formation] ? formation
+               : cacesCategories[formation?.replace('/', '_')] ? formation.replace('/', '_')
+               : null;
+
+      if (key) {
+        cacesCategories[key].forEach(cat => {
+          const wrap = document.createElement('label');
+          wrap.className = 'inline-flex items-center gap-2 rounded-lg bg-white p-2 ring-1 ring-slate-200';
+          wrap.innerHTML = `
+            <input type="checkbox" name="categories" value="${cat}" class="rounded text-blue-600 focus:ring-blue-500">
+            <span class="text-sm text-slate-800">${cat}</span>
+          `;
+          categoriesContainer.appendChild(wrap);
+        });
+      }
+    }
+
+    
+    function sendEmail(event) {
+      event.preventDefault();
+
+      const formation = document.getElementById('formation').value;
+      const dates = document.getElementById('dates').value;
+      const nom = document.getElementById('nom').value;
+      const prenom = document.getElementById('prenom').value;
+      const email = document.getElementById('email').value;
+      const telephone = document.getElementById('telephone').value;
+      const selectedCategories = Array.from(document.querySelectorAll('input[name="categories"]:checked'))
+        .map(cb => cb.value).join(', ');
+
+      if (typeof emailjs?.send !== 'function') {
+        alert("EmailJS n'est pas disponible pour le moment. Vous pouvez nous contacter via la page Contact.");
+        return;
+      }
+
+      emailjs.send('service_ns215jj', 'template_abw6al8', {
+        formation, dates, nom, prenom, email, telephone,
+        categories: selectedCategories || 'Aucune',
+      }).then(() => {
+        alert('Email envoyé avec succès !');
+      }).catch(error => {
+        console.error("Erreur lors de l'envoi de l'email :", error);
+        alert("Une erreur s'est produite lors de l'envoi de l'email.");
+      });
+    }
+
+    
+    document.getElementById('searchBtn')?.addEventListener('click', showResults);
+    document.getElementById('emailForm')?.addEventListener('submit', sendEmail);
+
+// ======== TÉMOIGNAGES ========
+
+  const featuredReviews = [
+    // EXEMPLES — remplace par les tiens
+    {
+      author: "David Truyen",
+      rating: 5,
+      date: "Janvier 2023",
+      text: "Centre de formation/recyclage Caces à taille humaine. Très bonne ambiance, on y subit pas la même pression que dans les très grands centres de formation brassant des centaines de personnes tous les jours. Formateurs à l écoute, souriants et très appliqués. Testeurs tres respecteux et intégres qui ne sont pas là pour démolir les stagiaires. Que du positif pour ce petit centre, convivial et très professionnel.",
+      author_url: "" // (optionnel) lien vers le profil Google de l'auteur
+    },
+    {
+      author: "Alhasana Sakho",
+      rating: 5,
+      date: "Juin 2022",
+      text: "Formateurs très professionnels sur tous les plans, je conseille fortement humainement au top",
+      author_url: ""
+    },
+    {
+      author: "Florian Lesniewski",
+      rating: 5,
+      date: "Novembre 2020",
+      text: "Formation de qualité et bonne esprit. Continuez ainsi.",
+      author_url: ""
+    }
+  ];
+
+ 
+  // (ex: URL "Voir tous les avis" de ta fiche Business)
+  const FALLBACK_MAPS_URL = "https://www.google.com/search?hl=fr-FR&gl=fr&q=dp+formation,+P.A+des+Autoroutes,+Rue+Andr%C3%A9+Missenard+Batiment+l%27Amorce,+02100+Saint-Quentin&ludocid=3893042025462015446&lsig=AB86z5WZ2ObpKp2zwGVOMIaPJlKc&hl=fr&gl=FR&sa=X&ved=2ahUKEwiHyJOhlJmQAxWUWqQEHRpABrMQ3PALegQIIhAO#lrd=0x47e8185c853a025b:0x3606dd188f54a5d6,1"; // ex: "https://g.page/r/XXXX/review" ou l’URL “Voir tous les avis”
+
+  const reviewsList = document.getElementById('reviewsList');
+  const seeMore = document.getElementById('seeMoreReviews');
+
+  const starSVG = (filled = true) => `
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ${filled?'text-yellow-500':'text-slate-300'}" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.802 2.036a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.802-2.036a1 1 0 00-1.176 0L6.7 16.283c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L3.064 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1-3.292z"/>
+    </svg>
+  `;
+
+  function renderCard({ author, rating = 5, date = "", text = "", author_url = "" }) {
+    const stars = Array.from({ length: 5 }, (_, i) => starSVG(i < Math.round(rating))).join('');
+    return `
+      <article class="rounded-2xl bg-white p-5 ring-1 ring-slate-200 shadow-sm">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <div class="flex">${stars}</div>
+              ${date ? `<span class="text-xs text-slate-500">${date}</span>` : ""}
+            </div>
+            <h3 class="mt-1 text-sm font-semibold text-slate-900">
+              ${author_url ? `<a href="${author_url}" class="hover:underline" target="_blank" rel="noopener">${author}</a>` : author}
+            </h3>
+          </div>
+          <span class="inline-grid h-6 w-6 shrink-0 place-items-center rounded bg-[#ECF5FF] ring-1 ring-slate-200 text-[11px] font-bold">G</span>
+        </div>
+        <p class="mt-3 text-sm text-slate-700">
+          ${String(text).replace(/</g, "&lt;")}
+        </p>
+      </article>
+    `;
+  }
+
+  function renderFeatured() {
+    reviewsList.innerHTML = featuredReviews.map(renderCard).join('');
+  }
+
+  async function wireSeeMore() {
+    // essaie de récupérer l’URL Google via ton endpoint back
+    try {
+      const res = await fetch('/api/reviews', { method: 'GET' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.maps_url) {
+          seeMore.href = data.maps_url;
+          return;
+        }
+      }
+      if (FALLBACK_MAPS_URL) seeMore.href = FALLBACK_MAPS_URL;
+    } catch (e) {
+      if (FALLBACK_MAPS_URL) seeMore.href = FALLBACK_MAPS_URL;
+    }
+  }
+
+  renderFeatured();
+  wireSeeMore();
+
+  </script>
+{% endblock %}

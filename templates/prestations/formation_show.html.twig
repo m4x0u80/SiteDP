@@ -1,0 +1,144 @@
+{# templates/prestations/formations.html.twig #}
+{% extends 'base.html.twig' %}
+{% block title %}Formations CACES® – DP Formation{% endblock %}
+
+{% set HERO_REMOTE = asset('images/presta.jpg') %}
+{% set HERO_LOCAL  = asset('images/presta.jpg') %}
+
+{% block meta %}
+  <link rel="preload" as="image" href="{{ HERO_REMOTE }}">
+{% endblock %}
+
+{% block body %}
+{# ---------- HERO avec léger overlay + fondu ---------- #}
+<section id="heroScroll" class="relative min-h-[60vh]">
+  <div id="heroViewport" class="sticky top-0 h-[60vh] overflow-hidden">
+    <img id="heroImg"
+         src="{{ HERO_REMOTE }}"
+         alt="Formations CACES – DP Formation"
+         class="absolute inset-0 h-full w-full object-cover"
+         style="object-position:50% 0%; transition:object-position 180ms ease-out; will-change:object-position;"
+         onerror="this.onerror=null;this.src='{{ HERO_LOCAL }}';"
+         loading="eager" fetchpriority="high" />
+    <div class="absolute inset-0 bg-blue-600/40 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#ECF5FF]"></div>
+
+    <div class="relative z-10 flex h-full items-center">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-lg">
+          <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl">Formations CACES®</h1>
+          <p class="mt-3 text-base text-white/80 sm:text-lg">
+            Maîtrisez la conduite en sécurité, pour tous types d’engins
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---------- SECTION : En Formation (4 cartes cliquables) ---------- #}
+<section class="bg-[#ECF5FF] py-12 text-slate-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-center text-lg font-bold">En Formation</h2>
+
+    <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-4">
+      {# Chariots #}
+      <a href="{{ path('app_formations_chariots') }}"
+         class="group block rounded-2xl bg-white p-6 ring-1 ring-slate-200 shadow-sm hover:shadow-md hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+        <div class="mx-auto grid h-28 w-28 place-items-center rounded-xl bg-slate-100">
+          <img
+            src="{{ asset('images/chariot.png') }}"
+            srcset="{{ asset('images/chariot.png') }} 1x, {{ asset('images/chariot@2x.png') }} 2x"
+            alt="Chariots"
+            class="h-16 w-16 object-contain"
+            loading="lazy"
+          />
+        </div>
+        <div class="mt-4 text-center font-semibold text-slate-900">Chariots</div>
+      </a>
+
+      {# Gerbeurs #}
+      <a href="{{ path('app_formations_gerbeurs') }}"
+         class="group block rounded-2xl bg-white p-6 ring-1 ring-slate-200 shadow-sm hover:shadow-md hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+        <div class="mx-auto grid h-28 w-28 place-items-center rounded-xl bg-slate-100">
+          <img
+            src="{{ asset('images/gerbeur.png') }}"
+            srcset="{{ asset('images/gerbeur.png') }} 1x, {{ asset('images/gerbeur@2x.png') }} 2x"
+            alt="Gerbeurs"
+            class="h-16 w-16 object-contain"
+            loading="lazy"
+          />
+        </div>
+        <div class="mt-4 text-center font-semibold text-slate-900">Gerbeurs</div>
+      </a>
+
+      {# Chantier #}
+      <a href="{{ path('app_formations_chantier') }}"
+         class="group block rounded-2xl bg-white p-6 ring-1 ring-slate-200 shadow-sm hover:shadow-md hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+        <div class="mx-auto grid h-28 w-28 place-items-center rounded-xl bg-slate-100">
+          <img
+            src="{{ asset('images/pelle.png') }}"
+            srcset="{{ asset('images/pelle.png') }} 1x, {{ asset('images/pelle@2x.png') }} 2x"
+            alt="Chantier"
+            class="h-16 w-16 object-contain"
+            loading="lazy"
+          />
+        </div>
+        <div class="mt-4 text-center font-semibold text-slate-900">Chantier</div>
+      </a>
+
+      {# Nacelles #}
+      <a href="{{ path('app_formations_nacelles') }}"
+         class="group block rounded-2xl bg-white p-6 ring-1 ring-slate-200 shadow-sm hover:shadow-md hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+        <div class="mx-auto grid h-28 w-28 place-items-center rounded-xl bg-slate-100">
+          <img
+            src="{{ asset('images/nacelle-a-ciseaux.png') }}"
+            srcset="{{ asset('images/nacelle-a-ciseaux.png') }} 1x, {{ asset('images/nacelle-a-ciseaux@2x.png') }} 2x"
+            alt="Nacelles"
+            class="h-16 w-16 object-contain"
+            loading="lazy"
+          />
+        </div>
+        <div class="mt-4 text-center font-semibold text-slate-900">Nacelles</div>
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    // Parallax du hero
+    (function () {
+      const wrapper = document.getElementById('heroScroll');
+      const viewport = document.getElementById('heroViewport');
+      const img = document.getElementById('heroImg');
+      if (!wrapper || !viewport || !img) return;
+
+      let curr = 0, target = 0, rafId = null;
+      function computeTarget() {
+        const start = wrapper.getBoundingClientRect().top + window.scrollY;
+        const range = Math.max(1, viewport.offsetHeight);
+        const y = window.scrollY - start;
+        const pRaw = Math.min(Math.max(y / range, 0), 1);
+        target = Math.min(pRaw, 0.97);
+        tick();
+      }
+      function tick() {
+        if (rafId) return;
+        rafId = requestAnimationFrame(function animate() {
+          rafId = null;
+          curr += (target - curr) * 0.12;
+          if (Math.abs(target - curr) < 0.001) curr = target;
+          else rafId = requestAnimationFrame(animate);
+          img.style.objectPosition = `50% ${Math.round(curr * 100)}%`;
+        });
+      }
+      computeTarget();
+      window.addEventListener('scroll', computeTarget, { passive: true });
+      window.addEventListener('resize', computeTarget);
+    })();
+  </script>
+{% endblock %}
+  
