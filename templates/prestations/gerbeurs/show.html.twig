@@ -1,0 +1,430 @@
+{# templates/prestations/gerbeurs/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# ----------------- Données de base ----------------- #}
+{# cat = "1" ou "2" (envoyé par le contrôleur)
+   title = "Gerbeurs – Catégorie X" #}
+
+{% block title %}{{ title }} – DP Formation{% endblock %}
+
+{# Hero : image générique pour les gerbeurs (change le nom si besoin) #}
+{% set HERO_REMOTE = asset('images/CACES_R485_1.png') %}
+{% set HERO_LOCAL  = asset('images/CACES_R485_1.png') %}
+
+{% block meta %}
+  <link rel="preload" as="image" href="{{ HERO_REMOTE }}">
+{% endblock %}
+
+{# --- Config par catégorie (texte, tarifs, fiche RS, etc.) --- #}
+{% set pages = {
+  '1': {
+    resume:       'Maîtrisez la conduite des gerbeurs – catégorie 1.',
+    description:  "
+Gerbeurs automoteurs à conducteur accompagnant, avec une hauteur de levée comprise entre 1,20 m et 2,50 m
+
+
+Objectifs de la formation :
+
+- Comprendre et appliquer les règles de sécurité liées à l’utilisation des gerbeurs accompagnants
+
+- Maîtriser les principales manœuvres : chargement et déchargement de camions, stockage/déstockage en palettier, déplacement de charges, etc...
+
+- Acquérir les bases technologiques des gerbeurs accompagnants et savoir lire les plaques de capacité
+
+
+Pré-requis :
+
+- Maîtrise de la langue française
+
+- Connaissance des calculs de base (addition, soustraction, etc...)
+
+- Être âgé de 18 ans minimum
+
+
+Moyens pédagogiques :
+
+- Ordinateur et vidéo-projecteur
+
+- Supports de cours et vidéos pédagogiques
+
+- Gerbeurs accompagnants de différentes catégories
+
+- Plateforme logistique conforme aux exigences du référentiel CACES® R485
+
+
+Équipements nécessaires :
+(En cas de besoin, DP Formation peut mettre à disposition une partie du matériel, dans la limite des stocks disponibles — hors chaussures de sécurité.)
+
+- Chaussures de sécurité
+
+- Gants
+
+- Gilet réfléchissant
+
+
+Sanction de la formation :
+
+- Évaluation théorique
+
+- Évaluation pratique (pour chaque catégorie)
+
+- Délivrance d’un CACES® et d’une attestation de formation en cas de réussite aux évaluations
+
+
+Contenu théorique :
+
+- Identifier le rôle des instances et organismes de prévention : Inspection du Travail, Assurance Maladie (CRAM/Cramif), Médecine du travail, contrôle technique
+
+- Connaître les conditions requises pour la conduite d’un chariot et les responsabilités associées
+
+- Reconnaître les principales catégories de chariots, leurs caractéristiques, leurs usages courants et leurs limites d’utilisation
+
+- Comprendre la technologie des organes principaux : groupe propulseur, circuit hydraulique, mât, tablier porte-charge…
+
+- Connaître le fonctionnement des organes de service et dispositifs de sécurité : coupe-circuit, frein de service, dispositifs de condamnation, etc...
+
+- Lire et interpréter les pictogrammes et panneaux de signalisation
+
+- Identifier les facteurs d’accidents liés à l’utilisation d’un chariot automoteur
+
+- Repérer les risques rencontrés sur un trajet déterminé
+
+- Lire une plaque de charge et en déduire les conditions de stabilité du chariot
+
+- Connaître les dispositifs de sécurité du conducteur : protège-conducteur, dosseret, siège, EPI, etc...
+
+- Expliquer et justifier l’interdiction de transporter ou d’élever des personnes
+
+- Connaître les règles de circulation et de conduite en intérieur comme en extérieur
+
+- Comprendre l’influence des paramètres (vitesse, état du sol, charge…) sur la distance de freinage
+
+- Identifier les produits dangereux par leur étiquetage et connaître les risques liés à leur manutention
+
+- Connaître les vérifications et opérations de maintenance de premier niveau
+
+
+Contenu pratique :
+
+- Vérifier l’adéquation du chariot aux opérations de manutention prévues
+
+- Réaliser les vérifications et opérations indispensables en début et fin de poste
+
+- Circuler à vide et en charge, en marche avant/arrière, en virage, et immobiliser le chariot en sécurité
+
+- Circuler et s'arrêter sur un plan incliné
+
+- Prendre et déposer une charge au sol
+
+- Réaliser un gerbage et un dégerbage en pile
+
+- Mettre en stock et déstocker des charges à différents niveaux d’un palettier
+
+- Charger et décharger une remorque à partir d’un quai par l’arrière
+
+- Prendre, déplacer et déposer une charge volumineuse
+
+- Identifier les anomalies et difficultés rencontrées et les signaler
+
+- Réaliser les opérations de maintenance de son ressort
+
+
+Validation (selon le référentiel CACES® R485) :
+
+- Évaluation théorique
+
+- Évaluation pratique : un parcours pratique par catégorie
+
+",
+    programme_url: '#',
+    tarifs: {
+      inter: 'à partir de 100€',
+      intra: 'sur devis'
+    },
+    infos: {
+      'Durée'   : '2 à 3 jours selon niveau',
+      'Lieu'    : 'DP Formation Saint-Quentin',
+      'Public'  : 'Magasiniers, préparateurs de commandes, caristes…',
+      'Validité': '5 ans'
+    },
+    fiche_url: 'https://www.francecompetences.fr/recherche/rs/6937/'
+  },
+  '2': {
+    resume:       'Approfondissez la conduite des gerbeurs – catégorie 2.',
+    description:  "
+Gerbeurs automoteurs à conducteur accompagnant, avec une hauteur de levée supérieure à 2,50 m
+
+Objectifs de la formation :
+
+- Comprendre et appliquer les règles de sécurité liées à l’utilisation des gerbeurs accompagnants
+
+- Maîtriser les principales manœuvres : chargement et déchargement de camions, stockage/déstockage en palettier, déplacement de charges, etc...
+
+- Acquérir les bases technologiques des gerbeurs accompagnants et savoir lire les plaques de capacité
+
+
+Pré-requis :
+
+- Maîtrise de la langue française
+
+- Connaissance des calculs de base (addition, soustraction, etc...)
+
+- Être âgé de 18 ans minimum
+
+
+Moyens pédagogiques :
+
+- Ordinateur et vidéo-projecteur
+
+- Supports de cours et vidéos pédagogiques
+
+- Gerbeurs accompagnants de différentes catégories
+
+- Plateforme logistique conforme aux exigences du référentiel CACES® R485
+
+
+Équipements nécessaires :
+(En cas de besoin, DP Formation peut mettre à disposition une partie du matériel, dans la limite des stocks disponibles — hors chaussures de sécurité.)
+
+- Chaussures de sécurité
+
+- Gants
+
+- Gilet réfléchissant
+
+
+Sanction de la formation :
+
+- Évaluation théorique
+
+- Évaluation pratique (pour chaque catégorie)
+
+- Délivrance d’un CACES® et d’une attestation de formation en cas de réussite aux évaluations
+
+
+Contenu théorique :
+
+- Identifier le rôle des instances et organismes de prévention : Inspection du Travail, Assurance Maladie (CRAM/Cramif), Médecine du travail, contrôle technique
+
+- Connaître les conditions requises pour la conduite d’un chariot et les responsabilités associées
+
+- Reconnaître les principales catégories de chariots, leurs caractéristiques, leurs usages courants et leurs limites d’utilisation
+
+- Comprendre la technologie des organes principaux : groupe propulseur, circuit hydraulique, mât, tablier porte-charge…
+
+- Connaître le fonctionnement des organes de service et dispositifs de sécurité : coupe-circuit, frein de service, dispositifs de condamnation, etc...
+
+- Lire et interpréter les pictogrammes et panneaux de signalisation
+
+- Identifier les facteurs d’accidents liés à l’utilisation d’un chariot automoteur
+
+- Repérer les risques rencontrés sur un trajet déterminé
+
+- Lire une plaque de charge et en déduire les conditions de stabilité du chariot
+
+- Connaître les dispositifs de sécurité du conducteur : protège-conducteur, dosseret, siège, EPI, etc...
+
+- Expliquer et justifier l’interdiction de transporter ou d’élever des personnes
+
+- Connaître les règles de circulation et de conduite en intérieur comme en extérieur
+
+- Comprendre l’influence des paramètres (vitesse, état du sol, charge…) sur la distance de freinage
+
+- Identifier les produits dangereux par leur étiquetage et connaître les risques liés à leur manutention
+
+- Connaître les vérifications et opérations de maintenance de premier niveau
+
+
+Contenu pratique :
+
+- Vérifier l’adéquation du chariot aux opérations de manutention prévues
+
+- Réaliser les vérifications et opérations indispensables en début et fin de poste
+
+- Circuler à vide et en charge, en marche avant/arrière, en virage, et immobiliser le chariot en sécurité
+
+- Circuler et s'arrêter sur un plan incliné
+
+- Prendre et déposer une charge au sol
+
+- Réaliser un gerbage et un dégerbage en pile
+
+- Mettre en stock et déstocker des charges à différents niveaux d’un palettier
+
+- Charger et décharger une remorque à partir d’un quai par l’arrière
+
+- Prendre, déplacer et déposer une charge volumineuse
+
+- Identifier les anomalies et difficultés rencontrées et les signaler
+
+- Réaliser les opérations de maintenance de son ressort
+
+
+Validation (selon le référentiel CACES® R485) :
+
+- Évaluation théorique
+
+- Évaluation pratique : un parcours pratique par catégorie
+
+",
+    programme_url: '#',
+    tarifs: {
+      inter: 'à partir de 100€',
+      intra: 'sur devis'
+    },
+    infos: {
+      'Durée'   : '2 à 3 jours',
+      'Lieu'    : 'DP Formation Saint-Quentin',
+      'Public'  : 'Caristes expérimentés, chefs d’équipe logistique…',
+      'Validité': '5 ans'
+    },
+    fiche_url: 'https://www.francecompetences.fr/recherche/rs/6938/' 
+  }
+} %}
+
+{# Prend la bonne config, ou celle de la cat 1 par défaut #}
+{% set page = pages[cat] ?? pages['1'] %}
+
+{% block body %}
+
+{# ================= HERO (parallax 60vh) ================= #}
+<section id="heroScroll" class="relative min-h-[60vh]">
+  <div id="heroViewport" class="sticky top-0 h-[60vh] overflow-hidden">
+    <img id="heroImg"
+         src="{{ HERO_REMOTE }}"
+         alt="{{ title }}"
+         class="absolute inset-0 h-full w-full object-cover"
+         style="object-position:50% 0%; transition:object-position 180ms ease-out; will-change:object-position;"
+         onerror="this.onerror=null;this.src='{{ HERO_LOCAL }}';"
+         loading="eager" fetchpriority="high" />
+
+    <div class="absolute inset-0 bg-blue-600/40 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#ECF5FF]"></div>
+
+    <div class="relative z-10 flex h-full items-center">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-3
+xl font-bold sm:text-4xl md:text-5xl">
+{{ title }}
+</h1>
+<p class="mt-3 text-base text-white/80 sm:text-lg">
+{{ page.resume }}
+</p>
+</div>
+</div>
+</div>
+
+</div> </section>
+{# ================= CONTENU ================= #}
+
+<section class="bg-[#ECF5FF] py-12 text-slate-900"> <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+{# ---- Ligne du haut : Infos pratiques + Tarifs ---- #}
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+
+  {# Infos pratiques #}
+  <article class="rounded-2xl bg-white ring-1 ring-slate-200 p-6 shadow-sm">
+    <h2 class="text-lg font-bold">Infos pratiques</h2>
+    <ul class="mt-4 space-y-3 text-sm">
+      {% for label, value in page.infos %}
+        <li class="flex items-start gap-3">
+          <span class="mt-1 inline-block h-2 w-2 rounded-full bg-blue-600"></span>
+          <p><span class="font-semibold">{{ label }} :</span> {{ value }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </article>
+
+  {# Tarifs #}
+  <aside class="rounded-2xl bg-white ring-1 ring-slate-200 p-6 shadow-sm">
+    <h2 class="text-lg font-bold">Tarif de formation</h2>
+
+    <dl class="mt-4 space-y-3 text-sm">
+      <div class="flex items-center justify-between">
+        <dt class="text-slate-700">inter-entreprises :</dt>
+        <dd class="font-semibold">{{ page.tarifs.inter }}</dd>
+      </div>
+      <div class="flex items-center justify-between">
+        <dt class="text-slate-700">intra-entreprise :</dt>
+        <dd class="font-semibold">{{ page.tarifs.intra }}</dd>
+      </div>
+    </dl>
+
+    <div class="mt-5">
+      <a href="{{ path('app_contact') }}"
+         class="inline-flex w-full items-center justify-center rounded-lg bg-[#1d4ed8] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#1b45c3] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        Réserver cette formation
+      </a>
+    </div>
+  </aside>
+</div>
+
+{# ---- Description (en dessous) ---- #}
+<div class="mt-6 rounded-2xl bg-white ring-1 ring-slate-200 p-6 shadow-sm">
+  <h2 class="text-lg font-bold">Description de la formation</h2>
+  <div class="prose prose-sm mt-4 max-w-none text-slate-800">
+    <p style="white-space:pre-line">{{ page.description|raw }}</p>
+  </div>
+
+  {# Bouton Fiche RS spécifique à la catégorie #}
+  {% if page.fiche_url is defined and page.fiche_url %}
+    <div class="mt-4">
+      <a href="{{ page.fiche_url }}" target="_blank" rel="noopener"
+         class="inline-flex items-center rounded-lg bg-[#1d4ed8] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#1b45c3] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        Fiche RS
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{# ---- Bouton retour ---- #}
+<div class="mt-10 text-center">
+  <a href="{{ path('app_formations_gerbeurs') }}"
+     class="inline-flex items-center gap-2 rounded-xl bg-[#0000FF] px-4 py-2 text-white text-sm font-semibold shadow hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+    ← Retour “Gerbeurs”
+  </a>
+</div>
+</div> </section> {% endblock %}
+{% block javascripts %}
+  {{ parent() }}
+
+  <script>
+    // Parallax smooth, comme sur les autres pages
+    (function () {
+      const wrapper  = document.getElementById('heroScroll');
+      const viewport = document.getElementById('heroViewport');
+      const img      = document.getElementById('heroImg');
+      if (!wrapper || !viewport || !img) return;
+
+      let curr = 0, target = 0, rafId = null;
+
+      function computeTarget() {
+        const start = wrapper.getBoundingClientRect().top + window.scrollY;
+        const range = Math.max(1, viewport.offsetHeight);
+        const y = window.scrollY - start;
+        const pRaw = Math.min(Math.max(y / range, 0), 1);
+        target = Math.min(pRaw, 0.97);
+        tick();
+      }
+
+      function tick() {
+        if (rafId) return;
+        rafId = requestAnimationFrame(function animate() {
+          rafId = null;
+          curr += (target - curr) * 0.12;
+          if (Math.abs(target - curr) < 0.001) {
+            curr = target;
+          } else {
+            rafId = requestAnimationFrame(animate);
+          }
+          img.style.objectPosition = `50% ${Math.round(curr * 100)}%`;
+        });
+      }
+
+      computeTarget();
+      window.addEventListener('scroll', computeTarget, { passive: true });
+      window.addEventListener('resize', computeTarget);
+    })();
+  </script>
+{% endblock %}
