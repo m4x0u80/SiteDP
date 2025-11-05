@@ -141,12 +141,21 @@
 
       </div>
 
-      <div class="mt-10 text-center">
-        <a href="{{ path('app_prestations_formations') }}"
-           class="text-sm font-medium text-blue-700 hover:text-blue-800 underline underline-offset-2">
-          ← Retour “En Formation”
-        </a>
-      </div>
+      <div class="mt-10 flex justify-center">
+  <a href="{{ path('app_prestations_formations') }}"
+     class="inline-flex items-center gap-2 rounded-xl bg-[#0000FF] px-4 py-2
+            text-white font-semibold shadow
+            hover:brightness-110
+            focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0000FF]"
+     aria-label="Retour vers En Formation">
+    <!-- petite flèche -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L6.414 8H17a1 1 0 110 2H6.414l3.293 3.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
+    </svg>
+    <span>Retour “En Formation”</span>
+  </a>
+</div>
+
     </div>
   </section>
 {% endblock %}
