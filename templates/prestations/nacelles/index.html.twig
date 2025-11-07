@@ -1,0 +1,132 @@
+{# templates/prestations/nacelles/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Nacelles – DP Formation{% endblock %}
+
+{# Image hero (à adapter avec ton vrai fichier) #}
+{% set HERO_REMOTE = asset('images/presta.jpg') %}
+{% set HERO_LOCAL  = asset('images/presta.jpg') %}
+
+{% block meta %}
+  <link rel="preload" as="image" href="{{ HERO_REMOTE }}">
+{% endblock %}
+
+{% block body %}
+
+{# ========== HERO avec effet défilant ========== #}
+<section id="heroScroll" class="relative min-h-[60vh]">
+  <div id="heroViewport" class="sticky top-0 h-[60vh] overflow-hidden">
+    <img id="heroImg"
+         src="{{ HERO_REMOTE }}"
+         alt="Formations Nacelles – DP Formation"
+         class="absolute inset-0 h-full w-full object-cover"
+         style="object-position:50% 0%; transition:object-position 180ms ease-out; will-change:object-position;"
+         onerror="this.onerror=null;this.src='{{ HERO_LOCAL }}';"
+         loading="eager"
+         fetchpriority="high"
+    />
+
+    {# voile bleu + fondu vers la section claire #}
+    <div class="absolute inset-0 bg-blue-600/40 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#ECF5FF]"></div>
+
+    <div class="relative z-10 flex h-full items-center">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl text-white">
+            Formations Nacelles
+          </h1>
+          <p class="mt-3 text-base text-white/80 sm:text-lg">
+            Maîtrisez la conduite en sécurité des PEMP de type A, B et la conduite hors production.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ========== SECTION CARTES ========== #}
+<section class="bg-[#ECF5FF] py-12 text-slate-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <h2 class="text-center text-xl font-bold">Nacelles</h2>
+
+    {# mapping catégorie -> image #}
+    {% set icons = {
+      'A': 'images/CACES_R486_A.png',
+      'B': 'images/CACES_R486_B.png'
+    } %}
+
+    {# Cartes centrées #}
+    <div class="mt-10 flex flex-wrap justify-center gap-x-16 gap-y-10">
+      {% for cat, label in categories %}
+        <a href="{{ path('app_formations_nacelles_cat', { cat: cat }) }}"
+           class="group block rounded-3xl bg-white p-8 ring-1 ring-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-200 w-[230px] text-center">
+          <div class="mx-auto mb-4 grid h-28 w-28 place-items-center rounded-2xl bg-[#F5F7FF]">
+            <img
+              src="{{ asset(icons[cat] ?? 'images/nacelle_A.png') }}"
+              alt="{{ label }}"
+              class="max-h-20 max-w-full object-contain"
+              loading="lazy"
+            />
+          </div>
+          <div class="text-sm font-semibold text-slate-900">
+            Catégorie {{ cat }}
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+
+    {# Bouton retour “En Formation” #}
+    <div class="mt-12 text-center">
+      <a href="{{ path('app_prestations_formations') }}"
+         class="inline-flex items-center gap-2 rounded-xl bg-[#0000FF] px-5 py-2.5 text-white text-sm font-semibold shadow hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        ← Retour “En Formation”
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    // Parallax smooth (comme chariots / gerbeurs)
+    (function () {
+      const wrapper  = document.getElementById('heroScroll');
+      const viewport = document.getElementById('heroViewport');
+      const img      = document.getElementById('heroImg');
+      if (!wrapper || !viewport || !img) return;
+
+      let curr = 0, target = 0, rafId = null;
+
+      function computeTarget() {
+        const start = wrapper.getBoundingClientRect().top + window.scrollY;
+        const range = Math.max(1, viewport.offsetHeight);
+        const y     = window.scrollY - start;
+        const pRaw  = Math.min(Math.max(y / range, 0), 1);
+        target      = Math.min(pRaw, 0.97);
+        tick();
+      }
+
+      function tick() {
+        if (rafId) return;
+        rafId = requestAnimationFrame(function animate() {
+          rafId = null;
+          curr += (target - curr) * 0.12;
+          if (Math.abs(target - curr) < 0.001) {
+            curr = target;
+          } else {
+            rafId = requestAnimationFrame(animate);
+          }
+          img.style.objectPosition = `50% ${Math.round(curr * 100)}%`;
+        });
+      }
+
+      computeTarget();
+      window.addEventListener('scroll', computeTarget, { passive: true });
+      window.addEventListener('resize', computeTarget);
+    })();
+  </script>
+{% endblock %}

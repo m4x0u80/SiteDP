@@ -148,12 +148,11 @@ final class PrestationsController extends AbstractController
         $categories = [
             'A' => 'PEMP type A',
             'B' => 'PEMP type B',
-            'C' => 'Conduite hors production',
         ];
         return $this->render('prestations/nacelles/index.html.twig', compact('categories'));
     }
 
-    #[Route('/prestations/formations/nacelles/{cat}', name: 'app_formations_nacelles_cat', requirements: ['cat' => 'A|B|C'], methods: ['GET'])]
+    #[Route('/prestations/formations/nacelles/{cat}', name: 'app_formations_nacelles_cat', requirements: ['cat' => 'A|B'], methods: ['GET'])]
     public function nacellesShow(string $cat): Response
     {
         return $this->render('prestations/nacelles/show.html.twig', [
