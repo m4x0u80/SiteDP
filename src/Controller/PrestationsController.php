@@ -94,7 +94,7 @@ final class PrestationsController extends AbstractController
 
         return $this->render('prestations/chariots/show.html.twig', [
             'cat'   => $cat,
-            'title' => $labels[$cat] ?? "Catégorie $cat",
+            'title' => $labels[$cat] ?? "CACES® R489 - Catégorie $cat",
         ]);
     }
 
@@ -114,7 +114,7 @@ final class PrestationsController extends AbstractController
     {
         return $this->render('prestations/gerbeurs/show.html.twig', [
             'cat' => $cat,
-            'title' => "Gerbeurs – Catégorie $cat",
+            'title' => "CACES® R485 – Catégorie $cat",
         ]);
     }
 
@@ -137,7 +137,7 @@ final class PrestationsController extends AbstractController
     {
         return $this->render('prestations/chantier/show.html.twig', [
             'cat' => $cat,
-            'title' => "Chantier – Catégorie $cat",
+            'title' => "CACES® R482 – Catégorie $cat",
         ]);
     }
 
@@ -158,7 +158,7 @@ final class PrestationsController extends AbstractController
     {
         return $this->render('prestations/nacelles/show.html.twig', [
             'cat' => $cat,
-            'title' => "Nacelles – Catégorie $cat",
+            'title' => "CACES® R486 – Catégorie $cat",
         ]);
     }
 

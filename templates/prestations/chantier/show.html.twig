@@ -3,7 +3,7 @@
 
 {# ----------------- Données venant du contrôleur -----------------
    - cat   : A, F, B1, C1 ou G
-   - title : "Chantier – Catégorie X"
+   - title : "CACES® R482 - Catégorie X"
 ----------------------------------------------------------------- #}
 
 {% block title %}{{ title }} – DP Formation{% endblock %}
@@ -11,45 +11,102 @@
 {# --- Config complète par catégorie --- #}
 {% set pages = {
   'A': {
-    hero_src:   asset('images/chantier_A.jpg'),   # change les noms d’images si besoin
-    hero_src2x: asset('images/chantier_A@2x.jpg'),
+    hero_src:   asset('images/presta.jpg'),
+    hero_src2x: asset('images/presta@2x.jpg'),
     resume:       'Maîtrisez la conduite des engins de la catégorie A (chargeuses / pelles compactes).',
     description:  "
-Cette formation prépare à la conduite en sécurité des engins de la catégorie A :
-chargeuses / pelles compactes.
+Engins compacts inférieur à 6 tonnes
 
-Objectifs principaux :
-- Comprendre les règles de sécurité applicables aux engins de chantier
-- Réaliser les principales manœuvres en sécurité
-- Savoir lire les plaques de charges et apprécier la stabilité de l’engin
+
+Objectifs de la formation :
+
+- Connaître la réglementation et appliquer les règles de sécurité liées à l’utilisation des engins de chantier
+- Comprendre la technologie des engins, les utiliser en sécurité et maîtriser les manœuvres spécifiques selon la catégorie
+
 
 Pré-requis :
-- Être âgé de 18 ans minimum
-- Être reconnu apte médicalement à la conduite d’engins
-- Compréhension suffisante du français écrit et oral
 
-Contenu théorique (exemple) :
-- Rôles et obligations des différents acteurs de la prévention
-- Responsabilités du conducteur d’engins de chantier
-- Technologie des engins de la catégorie A
-- Règles de circulation sur chantier, en entreprise, sur voirie interne
-- Signalisation, pictogrammes et consignes de sécurité
-- Vérifications, entretien de premier niveau et signalement des anomalies
+- Maîtrise de la langue française
+- Connaissance des calculs de base (addition, soustraction, etc...)
+- Être âgé de 18 ans minimum
+
+
+Effectif :
+
+- De 1 à 6 participants maximum
+
+
+Moyens pédagogiques mis à disposition par DP Formation :
+
+- Ordinateur et vidéo-projecteur
+- Supports de cours et contenus vidéo
+- Engins de chantier de différentes catégories
+- Plateforme logistique conforme aux exigences du référentiel CACES® R482
+
+
+Équipements nécessaires :
+(Si nécessaire, DP Formation peut fournir une partie du matériel, dans la limite des stocks disponibles, hors chaussures de sécurité.)
+
+- Chaussures de sécurité
+- Casque
+- Gants
+- Gilet réfléchissant
+
+
+Contenu théorique :
+
+- Bases de la réglementation applicable aux engins
+- Documents à présenter lors d’un contrôle
+- Rôle des organismes de prévention (IT, CRAM, OPPBTP, etc...)
+- Rôles et responsabilités : chef d’équipe, chef de chantier, conducteur de travaux
+- Principaux types d’engins et leurs caractéristiques
+- Fonctionnement des organes de service et dispositifs de sécurité
+- Principaux risques : renversement, heurts, réseaux enterrés ou aériens, énergie mise en œuvre
+- Règles de conduite, circulation, stationnement et gestuelle de commandement
+- Dispositions générales de sécurité
+- Distances de sécurité avec les conducteurs électriques
+
 
 Contenu pratique (exemple) :
+
 - Prise de poste et vérifications de sécurité
 - Circulation à vide et en charge, sur différents types de sols
 - Prise, transport et dépose de charges
 - Manœuvres de précision sur aire de travail
 - Stationnement et fin de poste
 
+
+Contenu pratique :
+
+- Contrôle visuel de l’état de l’engin (pneus, flexibles, fissures, cassures)
+- Vérification du bon fonctionnement des dispositifs de sécurité
+- Circulation en marche avant / arrière, virages, pentes et différents types de sols
+- Utilisation correcte des avertisseurs sonores et respect des règles de circulation
+- Réalisation des tâches propres à la catégorie de l’engin
+- Conduite adaptée aux conditions d’environnement (encombrement, virage, visibilité…)
+- Maîtrise des manœuvres avec précision et souplesse
+- Fin de poste : stationnement et consignation de l’engin
+- Chargement et déchargement sur porte-engin (si option ou catégorie 10)
+- Opérations d’entretien de premier niveau
+- Vérification des niveaux
+- Compte rendu à la hiérarchie
+
+
 Sanction :
+
 - Évaluations théorique et pratique
 - Délivrance d’un CACES® R482 catégorie A en cas de réussite
+
+
+Validation (selon le référentiel CACES® R482) :
+
+- Évaluation théorique
+- Évaluation pratique : un parcours pratique par catégorie
+
 ",
-    programme_url: '#',  # remplace par ton PDF ou ta page programme
+    programme_url: 'https://www.francecompetences.fr/recherche/rs/5081/',
     tarifs: {
-      inter: 'à partir de 450€',
+      inter: 'à partir de 100€',
       intra: 'sur devis'
     },
     infos: {
@@ -61,18 +118,101 @@ Sanction :
   },
 
   'F': {
-    hero_src:   asset('images/chantier_F.jpg'),
-    hero_src2x: asset('images/chantier_F@2x.jpg'),
+    hero_src:   asset('images/presta.jpg'),
+    hero_src2x: asset('images/presta@2x.jpg'),
     resume:       'Conduite en sécurité des chariots télescopiques – catégorie F.',
     description:  "
-Formation à la conduite des chariots télescopiques (catégorie F).
+Chariot de manutention tout-terrain
 
-(À compléter avec ton contenu détaillé : objectifs, pré-requis, contenu théorique
-et pratique, modalités d’évaluation, etc.)
+Objectifs de la formation :
+
+- Connaître la réglementation et appliquer les règles de sécurité liées à l’utilisation des engins de chantier
+- Comprendre la technologie des engins, les utiliser en sécurité et maîtriser les manœuvres spécifiques selon la catégorie
+
+
+Pré-requis :
+
+- Maîtrise de la langue française
+- Connaissance des calculs de base (addition, soustraction, etc...)
+- Être âgé de 18 ans minimum
+
+
+Effectif :
+
+- De 1 à 6 participants maximum
+
+
+Moyens pédagogiques mis à disposition par DP Formation :
+
+- Ordinateur et vidéo-projecteur
+- Supports de cours et contenus vidéo
+- Engins de chantier de différentes catégories
+- Plateforme logistique conforme aux exigences du référentiel CACES® R482
+
+
+Équipements nécessaires :
+(Si nécessaire, DP Formation peut fournir une partie du matériel, dans la limite des stocks disponibles, hors chaussures de sécurité.)
+
+- Chaussures de sécurité
+- Casque
+- Gants
+- Gilet réfléchissant
+
+
+Contenu théorique :
+
+- Bases de la réglementation applicable aux engins
+- Documents à présenter lors d’un contrôle
+- Rôle des organismes de prévention (IT, CRAM, OPPBTP, etc...)
+- Rôles et responsabilités : chef d’équipe, chef de chantier, conducteur de travaux
+- Principaux types d’engins et leurs caractéristiques
+- Fonctionnement des organes de service et dispositifs de sécurité
+- Principaux risques : renversement, heurts, réseaux enterrés ou aériens, énergie mise en œuvre
+- Règles de conduite, circulation, stationnement et gestuelle de commandement
+- Dispositions générales de sécurité
+- Distances de sécurité avec les conducteurs électriques
+
+
+Contenu pratique (exemple) :
+
+- Prise de poste et vérifications de sécurité
+- Circulation à vide et en charge, sur différents types de sols
+- Prise, transport et dépose de charges
+- Manœuvres de précision sur aire de travail
+- Stationnement et fin de poste
+
+
+Contenu pratique :
+
+- Contrôle visuel de l’état de l’engin (pneus, flexibles, fissures, cassures)
+- Vérification du bon fonctionnement des dispositifs de sécurité
+- Circulation en marche avant / arrière, virages, pentes et différents types de sols
+- Utilisation correcte des avertisseurs sonores et respect des règles de circulation
+- Réalisation des tâches propres à la catégorie de l’engin
+- Conduite adaptée aux conditions d’environnement (encombrement, virage, visibilité…)
+- Maîtrise des manœuvres avec précision et souplesse
+- Fin de poste : stationnement et consignation de l’engin
+- Chargement et déchargement sur porte-engin (si option ou catégorie 10)
+- Opérations d’entretien de premier niveau
+- Vérification des niveaux
+- Compte rendu à la hiérarchie
+
+
+Sanction :
+
+- Évaluations théorique et pratique
+- Délivrance d’un CACES® R482 catégorie A en cas de réussite
+
+
+Validation (selon le référentiel CACES® R482) :
+
+- Évaluation théorique
+- Évaluation pratique : un parcours pratique par catégorie
+
 ",
-    programme_url: '#',
+    programme_url: 'https://www.francecompetences.fr/recherche/rs/5101/',
     tarifs: {
-      inter: 'à partir de 480€',
+      inter: 'à partir de 100€',
       intra: 'sur devis'
     },
     infos: {
@@ -84,17 +224,101 @@ et pratique, modalités d’évaluation, etc.)
   },
 
   'B1': {
-    hero_src:   asset('images/chantier_B1.jpg'),
-    hero_src2x: asset('images/chantier_B1@2x.jpg'),
+    hero_src:   asset('images/presta.jpg'),
+    hero_src2x: asset('images/presta@2x.jpg'),
     resume:       'Formation à la conduite des tracteurs et petits engins de chantier.',
     description:  "
-Formation CACES® R482 catégorie B1 – Tracteurs et petits engins.
+Engins d'extraction à déplacement séquentiel supérieux à 6 tonnes
 
-(À compléter avec ton texte détaillé.)
+Objectifs de la formation :
+
+- Connaître la réglementation et appliquer les règles de sécurité liées à l’utilisation des engins de chantier
+- Comprendre la technologie des engins, les utiliser en sécurité et maîtriser les manœuvres spécifiques selon la catégorie
+
+
+Pré-requis :
+
+- Maîtrise de la langue française
+- Connaissance des calculs de base (addition, soustraction, etc...)
+- Être âgé de 18 ans minimum
+
+
+Effectif :
+
+- De 1 à 6 participants maximum
+
+
+Moyens pédagogiques mis à disposition par DP Formation :
+
+- Ordinateur et vidéo-projecteur
+- Supports de cours et contenus vidéo
+- Engins de chantier de différentes catégories
+- Plateforme logistique conforme aux exigences du référentiel CACES® R482
+
+
+Équipements nécessaires :
+(Si nécessaire, DP Formation peut fournir une partie du matériel, dans la limite des stocks disponibles, hors chaussures de sécurité.)
+
+- Chaussures de sécurité
+- Casque
+- Gants
+- Gilet réfléchissant
+
+
+Contenu théorique :
+
+- Bases de la réglementation applicable aux engins
+- Documents à présenter lors d’un contrôle
+- Rôle des organismes de prévention (IT, CRAM, OPPBTP, etc...)
+- Rôles et responsabilités : chef d’équipe, chef de chantier, conducteur de travaux
+- Principaux types d’engins et leurs caractéristiques
+- Fonctionnement des organes de service et dispositifs de sécurité
+- Principaux risques : renversement, heurts, réseaux enterrés ou aériens, énergie mise en œuvre
+- Règles de conduite, circulation, stationnement et gestuelle de commandement
+- Dispositions générales de sécurité
+- Distances de sécurité avec les conducteurs électriques
+
+
+Contenu pratique (exemple) :
+
+- Prise de poste et vérifications de sécurité
+- Circulation à vide et en charge, sur différents types de sols
+- Prise, transport et dépose de charges
+- Manœuvres de précision sur aire de travail
+- Stationnement et fin de poste
+
+
+Contenu pratique :
+
+- Contrôle visuel de l’état de l’engin (pneus, flexibles, fissures, cassures)
+- Vérification du bon fonctionnement des dispositifs de sécurité
+- Circulation en marche avant / arrière, virages, pentes et différents types de sols
+- Utilisation correcte des avertisseurs sonores et respect des règles de circulation
+- Réalisation des tâches propres à la catégorie de l’engin
+- Conduite adaptée aux conditions d’environnement (encombrement, virage, visibilité…)
+- Maîtrise des manœuvres avec précision et souplesse
+- Fin de poste : stationnement et consignation de l’engin
+- Chargement et déchargement sur porte-engin (si option ou catégorie 10)
+- Opérations d’entretien de premier niveau
+- Vérification des niveaux
+- Compte rendu à la hiérarchie
+
+
+Sanction :
+
+- Évaluations théorique et pratique
+- Délivrance d’un CACES® R482 catégorie A en cas de réussite
+
+
+Validation (selon le référentiel CACES® R482) :
+
+- Évaluation théorique
+- Évaluation pratique : un parcours pratique par catégorie
+
 ",
-    programme_url: '#',
+    programme_url: 'https://www.francecompetences.fr/recherche/rs/5087/',
     tarifs: {
-      inter: 'à partir de 450€',
+      inter: 'à partir de 100€',
       intra: 'sur devis'
     },
     infos: {
@@ -106,18 +330,102 @@ Formation CACES® R482 catégorie B1 – Tracteurs et petits engins.
   },
 
   'C1': {
-    hero_src:   asset('images/chantier_C1.jpg'),
-    hero_src2x: asset('images/chantier_C1@2x.jpg'),
+    hero_src:   asset('images/presta.jpg'),
+    hero_src2x: asset('images/presta@2x.jpg'),
     resume:       'Maîtrisez la conduite des niveleuses et bulldozers.',
     description:  "
-Formation à la conduite des engins de terrassement de type niveleuses / bulldozers
-(catégorie C1).
+Engins de chargement à déplacement alternatif supérieur à 6 tonnes
 
-(À compléter avec ton contenu de programme.)
+
+Objectifs de la formation :
+
+- Connaître la réglementation et appliquer les règles de sécurité liées à l’utilisation des engins de chantier
+- Comprendre la technologie des engins, les utiliser en sécurité et maîtriser les manœuvres spécifiques selon la catégorie
+
+
+Pré-requis :
+
+- Maîtrise de la langue française
+- Connaissance des calculs de base (addition, soustraction, etc...)
+- Être âgé de 18 ans minimum
+
+
+Effectif :
+
+- De 1 à 6 participants maximum
+
+
+Moyens pédagogiques mis à disposition par DP Formation :
+
+- Ordinateur et vidéo-projecteur
+- Supports de cours et contenus vidéo
+- Engins de chantier de différentes catégories
+- Plateforme logistique conforme aux exigences du référentiel CACES® R482
+
+
+Équipements nécessaires :
+(Si nécessaire, DP Formation peut fournir une partie du matériel, dans la limite des stocks disponibles, hors chaussures de sécurité.)
+
+- Chaussures de sécurité
+- Casque
+- Gants
+- Gilet réfléchissant
+
+
+Contenu théorique :
+
+- Bases de la réglementation applicable aux engins
+- Documents à présenter lors d’un contrôle
+- Rôle des organismes de prévention (IT, CRAM, OPPBTP, etc...)
+- Rôles et responsabilités : chef d’équipe, chef de chantier, conducteur de travaux
+- Principaux types d’engins et leurs caractéristiques
+- Fonctionnement des organes de service et dispositifs de sécurité
+- Principaux risques : renversement, heurts, réseaux enterrés ou aériens, énergie mise en œuvre
+- Règles de conduite, circulation, stationnement et gestuelle de commandement
+- Dispositions générales de sécurité
+- Distances de sécurité avec les conducteurs électriques
+
+
+Contenu pratique (exemple) :
+
+- Prise de poste et vérifications de sécurité
+- Circulation à vide et en charge, sur différents types de sols
+- Prise, transport et dépose de charges
+- Manœuvres de précision sur aire de travail
+- Stationnement et fin de poste
+
+
+Contenu pratique :
+
+- Contrôle visuel de l’état de l’engin (pneus, flexibles, fissures, cassures)
+- Vérification du bon fonctionnement des dispositifs de sécurité
+- Circulation en marche avant / arrière, virages, pentes et différents types de sols
+- Utilisation correcte des avertisseurs sonores et respect des règles de circulation
+- Réalisation des tâches propres à la catégorie de l’engin
+- Conduite adaptée aux conditions d’environnement (encombrement, virage, visibilité…)
+- Maîtrise des manœuvres avec précision et souplesse
+- Fin de poste : stationnement et consignation de l’engin
+- Chargement et déchargement sur porte-engin (si option ou catégorie 10)
+- Opérations d’entretien de premier niveau
+- Vérification des niveaux
+- Compte rendu à la hiérarchie
+
+
+Sanction :
+
+- Évaluations théorique et pratique
+- Délivrance d’un CACES® R482 catégorie A en cas de réussite
+
+
+Validation (selon le référentiel CACES® R482) :
+
+- Évaluation théorique
+- Évaluation pratique : un parcours pratique par catégorie
+
 ",
-    programme_url: '#',
+    programme_url: 'https://www.francecompetences.fr/recherche/rs/5123/',
     tarifs: {
-      inter: 'à partir de 520€',
+      inter: 'à partir de 100€',
       intra: 'sur devis'
     },
     infos: {
@@ -129,17 +437,101 @@ Formation à la conduite des engins de terrassement de type niveleuses / bulldoz
   },
 
   'G': {
-    hero_src:   asset('images/chantier_G.jpg'),
-    hero_src2x: asset('images/chantier_G@2x.jpg'),
+    hero_src:   asset('images/presta.jpg'),
+    hero_src2x: asset('images/presta@2x.jpg'),
     resume:       'Engins de chantier hors-route spécifiques – catégorie G.',
     description:  "
-Formation CACES® R482 catégorie G – Engins de chantier hors-route spécifiques.
+Conduite des engins hors production 
 
-(À compléter avec ton texte précis : types d’engins, objectifs, etc.)
+Objectifs de la formation :
+
+- Connaître la réglementation et appliquer les règles de sécurité liées à l’utilisation des engins de chantier
+- Comprendre la technologie des engins, les utiliser en sécurité et maîtriser les manœuvres spécifiques selon la catégorie
+
+
+Pré-requis :
+
+- Maîtrise de la langue française
+- Connaissance des calculs de base (addition, soustraction, etc...)
+- Être âgé de 18 ans minimum
+
+
+Effectif :
+
+- De 1 à 6 participants maximum
+
+
+Moyens pédagogiques mis à disposition par DP Formation :
+
+- Ordinateur et vidéo-projecteur
+- Supports de cours et contenus vidéo
+- Engins de chantier de différentes catégories
+- Plateforme logistique conforme aux exigences du référentiel CACES® R482
+
+
+Équipements nécessaires :
+(Si nécessaire, DP Formation peut fournir une partie du matériel, dans la limite des stocks disponibles, hors chaussures de sécurité.)
+
+- Chaussures de sécurité
+- Casque
+- Gants
+- Gilet réfléchissant
+
+
+Contenu théorique :
+
+- Bases de la réglementation applicable aux engins
+- Documents à présenter lors d’un contrôle
+- Rôle des organismes de prévention (IT, CRAM, OPPBTP, etc...)
+- Rôles et responsabilités : chef d’équipe, chef de chantier, conducteur de travaux
+- Principaux types d’engins et leurs caractéristiques
+- Fonctionnement des organes de service et dispositifs de sécurité
+- Principaux risques : renversement, heurts, réseaux enterrés ou aériens, énergie mise en œuvre
+- Règles de conduite, circulation, stationnement et gestuelle de commandement
+- Dispositions générales de sécurité
+- Distances de sécurité avec les conducteurs électriques
+
+
+Contenu pratique (exemple) :
+
+- Prise de poste et vérifications de sécurité
+- Circulation à vide et en charge, sur différents types de sols
+- Prise, transport et dépose de charges
+- Manœuvres de précision sur aire de travail
+- Stationnement et fin de poste
+
+
+Contenu pratique :
+
+- Contrôle visuel de l’état de l’engin (pneus, flexibles, fissures, cassures)
+- Vérification du bon fonctionnement des dispositifs de sécurité
+- Circulation en marche avant / arrière, virages, pentes et différents types de sols
+- Utilisation correcte des avertisseurs sonores et respect des règles de circulation
+- Réalisation des tâches propres à la catégorie de l’engin
+- Conduite adaptée aux conditions d’environnement (encombrement, virage, visibilité…)
+- Maîtrise des manœuvres avec précision et souplesse
+- Fin de poste : stationnement et consignation de l’engin
+- Chargement et déchargement sur porte-engin (si option ou catégorie 10)
+- Opérations d’entretien de premier niveau
+- Vérification des niveaux
+- Compte rendu à la hiérarchie
+
+
+Sanction :
+
+- Évaluations théorique et pratique
+- Délivrance d’un CACES® R482 catégorie A en cas de réussite
+
+
+Validation (selon le référentiel CACES® R482) :
+
+- Évaluation théorique
+- Évaluation pratique : un parcours pratique par catégorie
+
 ",
-    programme_url: '#',
+    programme_url: 'https://www.francecompetences.fr/recherche/rs/5103/',
     tarifs: {
-      inter: 'à partir de 520€',
+      inter: 'à partir de 100€',
       intra: 'sur devis'
     },
     infos: {
@@ -244,7 +636,7 @@ Formation CACES® R482 catégorie G – Engins de chantier hors-route spécifiqu
       <div class="mt-4">
         <a href="{{ page.programme_url }}"
            class="inline-flex items-center rounded-lg bg-[#1d4ed8] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#1b45c3] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-          Programme et Contenu
+          Fiche RS
         </a>
       </div>
     </div>
