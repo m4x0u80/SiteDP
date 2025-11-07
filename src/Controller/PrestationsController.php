@@ -123,16 +123,16 @@ final class PrestationsController extends AbstractController
     public function chantier(): Response
     {
         $categories = [
-            'A'  => 'Chargeuses / Pelles compactes',
-            'F'  => 'Chariots télescopiques',
-            'B1' => 'Tracteurs / Petits engins',
-            'C1' => 'Niveleuses / Bulldozers',
-            'G'  => 'Engins hors-route spécifiques',
+            'A'  => 'Mini-engins (mini-pelles, mini-chargeuses…)',
+            'B1' => 'Pelles hydrauliques',
+            'C1' => 'Chargeuses sur pneus',
+            'F'  => 'Compacteurs',
+            'G'  => 'Engins télécommandés / à distance',
         ];
         return $this->render('prestations/chantier/index.html.twig', compact('categories'));
     }
 
-    #[Route('/prestations/formations/chantier/{cat}', name: 'app_formations_chantier_cat', requirements: ['cat' => 'A|F|B1|C1|G'], methods: ['GET'])]
+    #[Route('/prestations/formations/chantier/{cat}', name: 'app_formations_chantier_cat', requirements: ['cat' => 'A|B1|C1|F|G'], methods: ['GET'])]
     public function chantierShow(string $cat): Response
     {
         return $this->render('prestations/chantier/show.html.twig', [
