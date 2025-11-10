@@ -973,4 +973,41 @@ Validation (selon le référentiel R489) :
             'page' => $pages[$cat],
         ]);
     }
+
+    #[Route(
+    '/prestations/formations/habilitations-electriques',
+    name: 'app_formations_hab_elec',
+    methods: ['GET']
+)]
+public function habilitationsElectriques(): Response
+{
+    $categories = [
+        'H0-B0'  => 'HO / B0',
+        'BE-Manoeuvre-BS' => 'BE Manoeuvre / BS',
+        'H1-B1'  => 'H1 / B1',
+        'BC'    => 'BC',
+        'BR'    => 'BR',
+        'H2-B2'  => 'H2 / B2',
+        'V'     => 'V',
+    ];
+
+    return $this->render('prestations/hab_elec/index.html.twig', [
+        'categories' => $categories,
+    ]);
+}
+
+#[Route(
+    '/prestations/formations/habilitations-electriques/{cat}',
+    name: 'app_formations_hab_elec_cat',
+    requirements: ['cat' => 'H0-B0|BE-Manoeuvre-BS|H1-B1|BC|BR|H2-B2|V'],
+    methods: ['GET']
+)]
+public function habElecShow(string $cat): Response
+{
+    return $this->render('prestations/hab_elec/show.html.twig', [
+        'cat'   => $cat,
+        'title' => "Habilitations électriques – " . strtoupper($cat),
+    ]);
+}
+
 }

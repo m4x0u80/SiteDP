@@ -1,0 +1,459 @@
+{# templates/prestations/hab_elec/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# ----- Variables envoyées par le contrôleur -----
+   cat:   'b0-h0' | 'bs-be' | 'b1-b2' | 'bf-hf'
+   title: ex. "Habilitations électriques – B0/H0/H0V"
+#}
+
+{% block title %}{{ title }} – DP Formation{% endblock %}
+
+{# Image hero (change le fichier si besoin) #}
+{% set HERO_REMOTE = asset('images/hab_elec.jpg') %}
+{% set HERO_LOCAL  = asset('images/hab_elec.jpg') %}
+
+{% block meta %}
+  <link rel="preload" as="image" href="{{ HERO_REMOTE }}">
+{% endblock %}
+
+{# --------- Contenus par catégorie (texte, tarifs, liens) --------- #}
+{% set pages = {
+  'b0-h0': {
+    resume: "Sensibilisation au risque électrique pour non-électriciens (environnement BT/HT).",
+    description: "
+Objectifs de la formation :
+
+- Connaître la réglementation et les règles de sécurité liées aux risques électriques
+- Maîtriser les procédures et interventions selon le niveau d’habilitation
+- Identifier les risques et distances de sécurité liés au travail sur ou à proximité d’installations électriques
+- Connaître et utiliser correctement les équipements de protection individuelle
+
+
+Pré-requis :
+
+- Maîtrise de la langue française
+- Être électricien de formation pour les habilitations de niveau « Électricien »
+- Être âgé de 18 ans minimum
+
+
+Effectif :
+
+- De 1 à 8 participants par session
+
+
+Moyens pédagogiques :
+
+- Ordinateur et vidéo-projecteur
+- Supports de cours et vidéos pédagogiques
+- Installation électrique correspondant aux niveaux d’habilitation visés
+- Plateforme logistique conforme au référentiel
+
+
+Équipements nécessaires :
+
+- Chaussures de sécurité
+- Casque d’électricien
+
+
+Contenu théorique :
+
+- Effets du courant électrique sur le corps humain (électrisation, électrocution, brûlures, etc...)
+- Limites des domaines de tension et zones d’environnement
+- Principe et définition de l’habilitation
+- Signification des symboles d’habilitation et rôle des intervenants
+- Principes généraux de prévention lors d’opérations électriques
+- Séquence de mise en sécurité d’un circuit et procédure de vérification d’absence de tension (VAT)
+- Équipements de protection collective et individuelle, et leurs limites
+- Risques liés à l’utilisation des outils et matériels en environnement électrique
+- Conduite à tenir en cas d’accident corporel (Article 13)
+- Conduite à tenir en cas d’incendie dans un environnement électrique (Article 13)
+
+
+Validation :
+
+- Test théorique (1 test par niveau d’habilitation)
+- Test pratique (1 parcours pratique par niveau d’habilitation)
+
+",
+    programme_url: "https://travail-emploi.gouv.fr/IMG/pdf/ute_c18-510-extract.pdf",
+    tarifs: { inter: "à partir de 100€", intra: "sur devis" },
+    infos: {
+      "Durée": "1 jour (7h)",
+      "Lieu": "DP Formation Saint-Quentin (ou intra)",
+      "Public": "Personnel non-électricien",
+      "Validité": "3 ans"
+    },
+    fiche_label: "Référentiel NFC 18-510 (extrait)",
+    fiche_url: "https://travail-emploi.gouv.fr/IMG/pdf/ute_c18-510-extract.pdf"
+  },
+  'bs-be': {
+    resume: "BS / BE manœuvre : interventions simples et manœuvres en sécurité.",
+    description: "
+Objectifs de la formation :
+
+- Connaître la réglementation et les règles de sécurité liées aux risques électriques
+- Maîtriser les procédures et interventions selon le niveau d’habilitation
+- Identifier les risques et distances de sécurité liés au travail sur ou à proximité d’installations électriques
+- Connaître et utiliser correctement les équipements de protection individuelle
+
+
+Pré-requis :
+
+- Maîtrise de la langue française
+- Être électricien de formation pour les habilitations de niveau « Électricien »
+- Être âgé de 18 ans minimum
+
+
+Effectif :
+
+- De 1 à 8 participants par session
+
+
+Moyens pédagogiques :
+
+- Ordinateur et vidéo-projecteur
+- Supports de cours et vidéos pédagogiques
+- Installation électrique correspondant aux niveaux d’habilitation visés
+- Plateforme logistique conforme au référentiel
+
+
+Équipements nécessaires :
+
+- Chaussures de sécurité
+- Casque d’électricien
+
+
+Contenu théorique :
+
+- Effets du courant électrique sur le corps humain (électrisation, électrocution, brûlures, etc...)
+- Limites des domaines de tension et zones d’environnement
+- Principe et définition de l’habilitation
+- Signification des symboles d’habilitation et rôle des intervenants
+- Principes généraux de prévention lors d’opérations électriques
+- Séquence de mise en sécurité d’un circuit et procédure de vérification d’absence de tension (VAT)
+- Équipements de protection collective et individuelle, et leurs limites
+- Risques liés à l’utilisation des outils et matériels en environnement électrique
+- Conduite à tenir en cas d’accident corporel (Article 13)
+- Conduite à tenir en cas d’incendie dans un environnement électrique (Article 13)
+
+
+Validation :
+
+- Test théorique (1 test par niveau d’habilitation)
+- Test pratique (1 parcours pratique par niveau d’habilitation)
+
+",
+    programme_url: "https://travail-emploi.gouv.fr/IMG/pdf/ute_c18-510-extract.pdf",
+    tarifs: { inter: "à partir de 100€", intra: "sur devis" },
+    infos: {
+      "Durée": "1 à 2 jours",
+      "Lieu": "DP Formation Saint-Quentin (ou intra)",
+      "Public": "Techniciens, agents de maintenance",
+      "Validité": "3 ans (reco.)"
+    },
+    fiche_label: "Référentiel NFC 18-510 (extrait)",
+    fiche_url: "https://travail-emploi.gouv.fr/IMG/pdf/ute_c18-510-extract.pdf"
+  },
+  'b1-b2': {
+    resume: "B1 / B2 / BR / BC : travaux et interventions en basse tension.",
+    description: "
+Objectifs de la formation :
+
+- Connaître la réglementation et les règles de sécurité liées aux risques électriques
+- Maîtriser les procédures et interventions selon le niveau d’habilitation
+- Identifier les risques et distances de sécurité liés au travail sur ou à proximité d’installations électriques
+- Connaître et utiliser correctement les équipements de protection individuelle
+
+
+Pré-requis :
+
+- Maîtrise de la langue française
+- Être électricien de formation pour les habilitations de niveau « Électricien »
+- Être âgé de 18 ans minimum
+
+
+Effectif :
+
+- De 1 à 8 participants par session
+
+
+Moyens pédagogiques :
+
+- Ordinateur et vidéo-projecteur
+- Supports de cours et vidéos pédagogiques
+- Installation électrique correspondant aux niveaux d’habilitation visés
+- Plateforme logistique conforme au référentiel
+
+
+Équipements nécessaires :
+
+- Chaussures de sécurité
+- Casque d’électricien
+
+
+Contenu théorique :
+
+- Effets du courant électrique sur le corps humain (électrisation, électrocution, brûlures, etc...)
+- Limites des domaines de tension et zones d’environnement
+- Principe et définition de l’habilitation
+- Signification des symboles d’habilitation et rôle des intervenants
+- Principes généraux de prévention lors d’opérations électriques
+- Séquence de mise en sécurité d’un circuit et procédure de vérification d’absence de tension (VAT)
+- Équipements de protection collective et individuelle, et leurs limites
+- Risques liés à l’utilisation des outils et matériels en environnement électrique
+- Conduite à tenir en cas d’accident corporel (Article 13)
+- Conduite à tenir en cas d’incendie dans un environnement électrique (Article 13)
+
+
+Contenu théorique et pratique ( BR ): 
+
+- Interventions BT générales et élémentaires, et limites de domaine
+- Fonctionnement des matériels BT et TBT
+- Informations à transmettre au chargé d’exploitation électrique
+- Risques liés aux matériels et outillages utilisés lors des interventions BT
+- Documents applicables (autorisations, instructions de sécurité, etc...)
+- Mesures de prévention et procédures de consignation
+
+
+Contenu théorique et pratique ( B1 / B2 ):
+
+- Travaux hors tension avec ou sans environnement électrique
+- Rôle du chargé de consignation et du chargé d’exploitation électrique
+- Limites des différents niveaux d’habilitation
+- Prescriptions d’exécution des travaux
+- Fonctionnement des matériels BT et TBT
+- Documents applicables : attestation de consignation, avis de fin de travail, autorisations de travail, etc...
+- Risques liés aux matériels et outillages spécifiques
+- Mesures de prévention à appliquer lors des travaux
+
+
+Validation :
+
+- Test théorique (1 test par niveau d’habilitation)
+- Test pratique (1 parcours pratique par niveau d’habilitation)
+
+",
+    programme_url: "https://travail-emploi.gouv.fr/IMG/pdf/ute_c18-510-extract.pdf",
+    tarifs: { inter: "à partir de 100€", intra: "sur devis" },
+    infos: {
+      "Durée": "2 à 3 jours",
+      "Lieu": "DP Formation Saint-Quentin (ou intra)",
+      "Public": "Électriciens BT",
+      "Validité": "3 ans (reco.)"
+    },
+    fiche_label: "Référentiel NFC 18-510 (extrait)",
+    fiche_url: "https://travail-emploi.gouv.fr/IMG/pdf/ute_c18-510-extract.pdf"
+  },
+  'bf-hf': {
+    resume: "BF / HF : intervention en locaux et environnements à risques spécifiques.",
+    description: "
+Objectifs de la formation :
+
+- Connaître la réglementation et les règles de sécurité liées aux risques électriques
+- Maîtriser les procédures et interventions selon le niveau d’habilitation
+- Identifier les risques et distances de sécurité liés au travail sur ou à proximité d’installations électriques
+- Connaître et utiliser correctement les équipements de protection individuelle
+
+
+Pré-requis :
+
+- Maîtrise de la langue française
+- Être électricien de formation pour les habilitations de niveau « Électricien »
+- Être âgé de 18 ans minimum
+
+
+Effectif :
+
+- De 1 à 8 participants par session
+
+
+Moyens pédagogiques :
+
+- Ordinateur et vidéo-projecteur
+- Supports de cours et vidéos pédagogiques
+- Installation électrique correspondant aux niveaux d’habilitation visés
+- Plateforme logistique conforme au référentiel
+
+
+Équipements nécessaires :
+
+- Chaussures de sécurité
+- Casque d’électricien
+
+
+Contenu théorique :
+
+- Effets du courant électrique sur le corps humain (électrisation, électrocution, brûlures, etc...)
+- Limites des domaines de tension et zones d’environnement
+- Principe et définition de l’habilitation
+- Signification des symboles d’habilitation et rôle des intervenants
+- Principes généraux de prévention lors d’opérations électriques
+- Séquence de mise en sécurité d’un circuit et procédure de vérification d’absence de tension (VAT)
+- Équipements de protection collective et individuelle, et leurs limites
+- Risques liés à l’utilisation des outils et matériels en environnement électrique
+- Conduite à tenir en cas d’accident corporel (Article 13)
+- Conduite à tenir en cas d’incendie dans un environnement électrique (Article 13)
+
+
+Validation :
+
+- Test théorique (1 test par niveau d’habilitation)
+- Test pratique (1 parcours pratique par niveau d’habilitation)
+
+",
+    programme_url: "https://travail-emploi.gouv.fr/IMG/pdf/ute_c18-510-extract.pdf",
+    tarifs: { inter: "à partir de 100€", intra: "sur devis" },
+    infos: {
+      "Durée": "1 à 2 jours",
+      "Lieu": "DP Formation Saint-Quentin (ou intra)",
+      "Public": "Personnel d’exploitation / maintenance",
+      "Validité": "3 ans (reco.)"
+    },
+    fiche_label: "Référentiel NFC 18-510 (extrait)",
+    fiche_url: "https://travail-emploi.gouv.fr/IMG/pdf/ute_c18-510-extract.pdf"
+  }
+} %}
+
+{# Sélectionne la config de la catégorie, fallback sur b0-h0 #}
+{% set page = pages[cat] ?? pages['b0-h0'] %}
+
+{% block body %}
+{# ================= HERO (parallax 60vh) ================= #}
+<section id="heroScroll" class="relative min-h-[60vh]">
+  <div id="heroViewport" class="sticky top-0 h-[60vh] overflow-hidden">
+    <img
+      id="heroImg"
+      src="{{ HERO_REMOTE }}"
+      alt="{{ title }}"
+      class="absolute inset-0 h-full w-full object-cover"
+      style="object-position:50% 0%; transition:object-position 180ms ease-out; will-change:object-position;"
+      onerror="this.onerror=null;this.src='{{ HERO_LOCAL }}';"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-blue-600/40 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#ECF5FF]"></div>
+
+    <div class="relative z-10 flex h-full items-center">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl">{{ title }}</h1>
+          <p class="mt-3 text-base text-white/80 sm:text-lg">{{ page.resume }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ================= CONTENU ================= #}
+<section class="bg-[#ECF5FF] py-12 text-slate-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    {# ---- Ligne du haut : Infos pratiques + Tarifs ---- #}
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+
+      {# Infos pratiques #}
+      <article class="rounded-2xl bg-white ring-1 ring-slate-200 p-6 shadow-sm">
+        <h2 class="text-lg font-bold">Infos pratiques</h2>
+        <ul class="mt-4 space-y-3 text-sm">
+          {% for label, value in page.infos %}
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-block h-2 w-2 rounded-full bg-blue-600"></span>
+              <p><span class="font-semibold">{{ label }} :</span> {{ value }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </article>
+
+      {# Tarifs + CTA #}
+      <aside class="rounded-2xl bg-white ring-1 ring-slate-200 p-6 shadow-sm">
+        <h2 class="text-lg font-bold">Tarif de formation</h2>
+
+        <dl class="mt-4 space-y-3 text-sm">
+          <div class="flex items-center justify-between">
+            <dt class="text-slate-700">inter-entreprises :</dt>
+            <dd class="font-semibold">{{ page.tarifs.inter }}</dd>
+          </div>
+          <div class="flex items-center justify-between">
+            <dt class="text-slate-700">intra-entreprise :</dt>
+            <dd class="font-semibold">{{ page.tarifs.intra }}</dd>
+          </div>
+        </dl>
+
+        <div class="mt-5">
+          <a href="{{ path('app_contact') }}"
+             class="inline-flex w-full items-center justify-center rounded-lg bg-[#1d4ed8] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#1b45c3] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Réserver cette formation
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    {# ---- Description (pleine largeur) ---- #}
+    <div class="mt-6 rounded-2xl bg-white ring-1 ring-slate-200 p-6 shadow-sm">
+      <h2 class="text-lg font-bold">Description de la formation</h2>
+      <div class="prose prose-sm mt-4 max-w-none text-slate-800">
+        <p style="white-space:pre-line">{{ page.description|raw }}</p>
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-3">
+        <a href="{{ page.programme_url }}"
+           class="inline-flex items-center rounded-lg bg-[#1d4ed8] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#1b45c3] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          Programme et Contenu
+        </a>
+
+        {# Bouton unique par catégorie : libellé + lien issus de pages[cat] #}
+        <a href="{{ page.fiche_url }}"
+           class="inline-flex items-center rounded-lg bg-[#0ea5e9] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#0c94d1] focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+          {{ page.fiche_label }}
+        </a>
+      </div>
+    </div>
+
+    {# ---- Bouton retour ---- #}
+    <div class="mt-10 text-center">
+      <a href="{{ path('app_formations_hab_elec') }}"
+         class="inline-flex items-center gap-2 rounded-xl bg-[#0000FF] px-4 py-2 text-white text-sm font-semibold shadow hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        ← Retour “Habilitations Électriques”
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    // Parallax smooth (identique aux autres pages)
+    (function () {
+      const wrapper  = document.getElementById('heroScroll');
+      const viewport = document.getElementById('heroViewport');
+      const img      = document.getElementById('heroImg');
+      if (!wrapper || !viewport || !img) return;
+
+      let curr = 0, target = 0, rafId = null;
+      function computeTarget() {
+        const start = wrapper.getBoundingClientRect().top + window.scrollY;
+        const range = Math.max(1, viewport.offsetHeight);
+        const y = window.scrollY - start;
+        const pRaw = Math.min(Math.max(y / range, 0), 1);
+        target = Math.min(pRaw, 0.97);
+        tick();
+      }
+      function tick() {
+        if (rafId) return;
+        rafId = requestAnimationFrame(function animate() {
+          rafId = null;
+          curr += (target - curr) * 0.12;
+          if (Math.abs(target - curr) < 0.001) curr = target;
+          else rafId = requestAnimationFrame(animate);
+          img.style.objectPosition = `50% ${Math.round(curr * 100)}%`;
+        });
+      }
+      computeTarget();
+      window.addEventListener('scroll', computeTarget, { passive: true });
+      window.addEventListener('resize', computeTarget);
+    })();
+  </script>
+{% endblock %}
