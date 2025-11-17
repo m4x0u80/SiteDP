@@ -1010,4 +1010,93 @@ public function habElecShow(string $cat): Response
     ]);
 }
 
+
+#[Route('/prestations/securite', name: 'app_formations_securite', methods: ['GET'])]
+    public function securiteIndex(): Response
+    {
+        $items = [
+            'sst' => [
+                'title'    => 'SST',
+                'subtitle' => 'Sauveteur Secouriste du Travail',
+                'route'    => 'app_formations_sst',
+                'img'      => 'images/rcr_bleu.png',
+            ],
+            'aipr' => [
+                'title'    => 'AIPR',
+                'subtitle' => 'Opérateur / Encadrant / Concepteur',
+                'route'    => 'app_formations_aipr',
+                'img'      => 'images/conduite-de-gaz.png',
+            ],
+            'echafaudage' => [
+                'title'    => 'Échafaudage',
+                'subtitle' => 'Fixe / Roulant / Utilisation / Réception',
+                'route'    => 'app_formations_echafaudage',
+                'img'      => 'images/echafaudage.png',
+            ],
+            'hauteur' => [
+                'title'    => 'Travail en hauteur',
+                'subtitle' => 'Harnais, ancrages, déplacements…',
+                'route'    => 'app_formations_hauteur',
+                'img'      => 'images/harnais-de-securite.png',
+            ],
+            'elingage' => [
+                'title'    => 'Élingage',
+                'subtitle' => 'Choix des élingues, coefficients, gestes',
+                'route'    => 'app_formations_elingage',
+                'img'      => 'images/accrocher.png',
+            ],
+        ];
+
+        return $this->render('prestations/securite/index.html.twig', [
+            'items' => $items,
+        ]);
+    }
+
+    
+    #[Route('/prestations/securite/sst', name: 'app_formations_sst', methods: ['GET'])]
+    public function sst(): Response
+    {
+        return $this->render('prestations/securite/show.html.twig', [
+            'slug'  => 'sst',
+            'title' => 'SST – Sauveteur Secouriste du Travail',
+        ]);
+    }
+
+    #[Route('/prestations/securite/aipr', name: 'app_formations_aipr', methods: ['GET'])]
+    public function aipr(): Response
+    {
+        return $this->render('prestations/securite/show.html.twig', [
+            'slug'  => 'aipr',
+            'title' => 'AIPR – Autorisation d’Intervention à Proximité des Réseaux',
+        ]);
+    }
+
+    #[Route('/prestations/securite/echafaudage', name: 'app_formations_echafaudage', methods: ['GET'])]
+    public function echafaudage(): Response
+    {
+        return $this->render('prestations/securite/show.html.twig', [
+            'slug'  => 'echafaudage',
+            'title' => 'Échafaudage – Montage, Utilisation, Réception',
+        ]);
+    }
+
+    #[Route('/prestations/securite/hauteur', name: 'app_formations_hauteur', methods: ['GET'])]
+    public function hauteur(): Response
+    {
+        return $this->render('prestations/securite/show.html.twig', [
+            'slug'  => 'hauteur',
+            'title' => 'Travail en hauteur – Harnais & déplacements',
+        ]);
+    }
+
+    #[Route('/prestations/securite/elingage', name: 'app_formations_elingage', methods: ['GET'])]
+    public function elingage(): Response
+    {
+        return $this->render('prestations/securite/show.html.twig', [
+            'slug'  => 'elingage',
+            'title' => 'Élingage – Gestes & choix des accessoires',
+        ]);
+    }
+
+
 }
