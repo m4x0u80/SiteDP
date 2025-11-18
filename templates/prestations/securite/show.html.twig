@@ -1,0 +1,289 @@
+{# templates/prestations/securite/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{# ----- Variables attendues -----
+   cat   : 'sst' | 'aipr' | 'echafaudage' | 'hauteur' | 'elingage'
+   title : ex. "Sécurité – SST" (peut être surchargé par le contrôleur)
+#}
+
+{% block title %}{{ title ?? 'Sécurité – DP Formation' }}{% endblock %}
+
+{# Images hero par catégorie + fallback #}
+{% set HEROES = {
+  'sst'         : asset('images/rcr_bleu.png'),
+  'aipr'        : asset('images/conduite-de-gaz.png'),
+  'echafaudage' : asset('images/echafaudage.png'),
+  'hauteur'     : asset('images/harnais-de-securite.png'),
+  'elingage'    : asset('images/accrocher.png')
+} %}
+{% set HERO_REMOTE = HEROES[cat]|default(asset('images/securite-hero.jpg')) %}
+{% set HERO_LOCAL  = HERO_REMOTE %}
+
+{# --------- Contenus par catégorie (texte, tarifs, infos…) --------- #}
+{% set pages = {
+  'sst': {
+    titre: "SST – Sauveteur Secouriste du Travail",
+    resume: "Former vos équipes à réagir vite et bien : protéger, alerter, secourir.",
+    description: "
+Objectifs :
+- Identifier un danger persistant et protéger de façon adaptée ;
+- Examiner la victime (SAF : saignement, étouffement, inconscience, arrêt cardiaque, etc.) ;
+- Alerter les secours et transmettre une information pertinente ;
+- Réaliser les gestes qui sauvent (PLS, compressions, DAE, hémorragies, brûlures, traumatismes…).
+
+Public visé :
+- Tout salarié (tous secteurs), agents et encadrants.
+
+Prérequis :
+- Aucun (compréhension du français recommandée).
+
+Pédagogie :
+- Démonstrations, mises en situation, simulations avec matériel (mannequins, DAE de formation), débriefings.
+
+Validation :
+- Évaluation continue + épreuves certificatives (INRS) ;
+- Délivrance du certificat SST (validité 24 mois) ; maintien/actualisation des compétences via MAC SST.
+",
+    tarifs: { inter: "à partir de 140€ / pers.", intra: "sur devis" },
+    infos: {
+      "Durée"  : "2 jours (14h) – MAC : 7h",
+      "Lieu"   : "Saint-Quentin ou intra",
+      "Public" : "Tous salariés / agents",
+      "Validité" : "2 ans (MAC)"
+    }
+  },
+
+  'aipr': {
+    titre: "AIPR – Autorisation d’Intervention à Proximité des Réseaux",
+    resume: "Préparez vos opérateurs, encadrants et concepteurs à l’examen QCM officiel.",
+    description: "
+Objectifs :
+- Connaître la réglementation anti-endommagement (DT/DICT, rôles et responsabilités) ;
+- Identifier les classes de précision des plans, marquage-piquetage ;
+- Appliquer les bonnes pratiques de prévention à proximité de réseaux (gaz, élec., eau, télécom).
+
+Public :
+- Opérateur / Encadrant / Concepteur.
+
+Modalités :
+- Préparation à l’examen (QCM) sur plateforme agréée ;
+- Entraînement, cas concrets de chantier.
+
+Validation :
+- Réussite au QCM => délivrance de l’attestation (valable 5 ans selon réglementation en vigueur).
+",
+    tarifs: { inter: "à partir de 120€ / pers.", intra: "sur devis" },
+    infos: {
+      "Durée"  : "1 jour (7h) – selon niveaux",
+      "Lieu"   : "Saint-Quentin ou intra",
+      "Public" : "Opérateur / Encadrant / Concepteur",
+      "Validité" : "5 ans"
+    }
+  },
+
+  'echafaudage': {
+    titre: "Échafaudage – Montage, Utilisation, Réception",
+    resume: "Sécurisez montage/démontage, utilisation et vérification des échafaudages.",
+    description: "
+Parcours possibles :
+- Montage/Démontage (roulant / de pied) ;
+- Utilisation en sécurité (accès, appuis, liaisons, charges admissibles) ;
+- Réception/Vérification (contrôles, PV de réception, vérifs journalières et périodiques).
+
+Objectifs :
+- Appliquer la réglementation et les notices fabricants ;
+- Réaliser un montage/démontage en sécurité ;
+- Formaliser la réception et les contrôles.
+
+Validation :
+- Évaluations théoriques et pratiques ;
+- Attestation de formation (habilitation interne de l’employeur).
+",
+    tarifs: { inter: "à partir de 180€ / pers.", intra: "sur devis" },
+    infos: {
+      "Durée"  : "1 à 3 jours selon module",
+      "Lieu"   : "Plateforme DP Formation / intra",
+      "Public" : "Monteurs, utilisateurs, encadrants",
+      "Matériel" : "EPI obligatoires (casque, harnais si requis)"
+    }
+  },
+
+  'hauteur': {
+    titre: "Travail en hauteur / Port du harnais",
+    resume: "Prévention du risque de chute, ancrages, harnais : du concret et de la pratique.",
+    description: "
+Objectifs :
+- Connaître les risques (chutes, effet pendulaire, suspension) et la réglementation ;
+- Choisir et vérifier EPI (harnais, longes, absorbeurs, connecteurs) ;
+- Réaliser les manipulations sur points d’ancrage / lignes de vie ;
+- Mettre en œuvre secours simples (selon contexte).
+
+Pédagogie :
+- Ateliers pratiques sur aire dédiée ou chez vous (intra) ;
+- Études de cas (toitures, nacelles, échafaudages).
+
+Validation :
+- Évaluations pratiques + attestation de formation (habilitation interne de l’employeur).
+",
+    tarifs: { inter: "à partir de 170€ / pers.", intra: "sur devis" },
+    infos: {
+      "Durée"  : "1 jour (7h) – modules avancés possibles",
+      "Lieu"   : "Plateforme DP ou intra",
+      "Public" : "Intervenants en hauteur, maintenance, BTP, industrie",
+      "EPI"    : "Harnais, longes, casque (fourniture possible)"
+    }
+  },
+
+  'elingage': {
+    titre: "Élingage et Manutention de charges",
+    resume: "Choisir les bons accessoires, élinguer correctement et lever en sécurité.",
+    description: "
+Objectifs :
+- Identifier accessoires (élingues, manilles, crochets, palonniers…) et leurs limites ;
+- Lire plaques de charge, CMU, angles, facteurs de réduction ;
+- Réaliser préparation, accrochage, guidage et dépose en sécurité ;
+- Communiquer avec le conducteur (gestuelle, talkie).
+
+Validation :
+- Exercices pratiques + attestation de formation.
+",
+    tarifs: { inter: "à partir de 160€ / pers.", intra: "sur devis" },
+    infos: {
+      "Durée"  : "1 jour (7h) – selon niveaux",
+      "Lieu"   : "Plateforme DP ou intra",
+      "Public" : "Magasins, BTP, industrie, logistique",
+      "Pré-requis" : "Connaissances de base en manutention"
+    }
+  }
+} %}
+
+{# Sélection de la page de la catégorie, fallback SST #}
+{% set page = pages[cat] ?? pages['sst'] %}
+
+{% block body %}
+{# ================= HERO (parallax 60vh) ================= #}
+<section id="heroScroll" class="relative min-h-[60vh]">
+  <div id="heroViewport" class="sticky top-0 h-[60vh] overflow-hidden">
+    <img
+      id="heroImg"
+      src="{{ HERO_REMOTE }}"
+      alt="{{ page.titre }}"
+      class="absolute inset-0 h-full w-full object-cover"
+      style="object-position:50% 0%; transition:object-position 180ms ease-out; will-change:object-position;"
+      onerror="this.onerror=null;this.src='{{ HERO_LOCAL }}';"
+      loading="eager" fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-blue-600/40 mix-blend-multiply"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#ECF5FF]"></div>
+
+    <div class="relative z-10 flex h-full items-center">
+      <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl">{{ page.titre }}</h1>
+          <p class="mt-3 text-base text-white/80 sm:text-lg">{{ page.resume }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ================= CONTENU ================= #}
+<section class="bg-[#ECF5FF] py-12 text-slate-900">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    {# ---- Ligne du haut : Infos pratiques + Tarifs ---- #}
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+
+      {# Infos pratiques #}
+      <article class="rounded-2xl bg-white ring-1 ring-slate-200 p-6 shadow-sm">
+        <h2 class="text-lg font-bold">Infos pratiques</h2>
+        <ul class="mt-4 space-y-3 text-sm">
+          {% for label, value in page.infos %}
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-block h-2 w-2 rounded-full bg-blue-600"></span>
+              <p><span class="font-semibold">{{ label }} :</span> {{ value }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      </article>
+
+      {# Tarifs + CTA #}
+      <aside class="rounded-2xl bg-white ring-1 ring-slate-200 p-6 shadow-sm">
+        <h2 class="text-lg font-bold">Tarif de formation</h2>
+
+        <dl class="mt-4 space-y-3 text-sm">
+          <div class="flex items-center justify-between">
+            <dt class="text-slate-700">inter-entreprises :</dt>
+            <dd class="font-semibold">{{ page.tarifs.inter }}</dd>
+          </div>
+          <div class="flex items-center justify-between">
+            <dt class="text-slate-700">intra-entreprise :</dt>
+            <dd class="font-semibold">{{ page.tarifs.intra }}</dd>
+          </div>
+        </dl>
+
+        <div class="mt-5">
+          {# Envoi direct vers l’ancre de pré-réservation de l’accueil (#reservation) #}
+          <a href="{{ path('app_home') }}#reservation"
+             class="inline-flex w-full items-center justify-center rounded-lg bg-[#1d4ed8] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#1b45c3] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            Réserver cette formation
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    {# ---- Description (pleine largeur) ---- #}
+    <div class="mt-6 rounded-2xl bg-white ring-1 ring-slate-200 p-6 shadow-sm">
+      <h2 class="text-lg font-bold">Description de la formation</h2>
+      <div class="prose prose-sm mt-4 max-w-none text-slate-800">
+        <p style="white-space:pre-line">{{ page.description|raw }}</p>
+      </div>
+    </div>
+
+    {# ---- Bouton retour ---- #}
+    <div class="mt-10 text-center">
+      <a href="{{ path('app_formations_securite') }}"
+         class="inline-flex items-center gap-2 rounded-xl bg-[#0000FF] px-4 py-2 text-white text-sm font-semibold shadow hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+        ← Retour “Sécurité”
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script>
+    // Parallax smooth (identique aux autres pages)
+    (function () {
+      const wrapper  = document.getElementById('heroScroll');
+      const viewport = document.getElementById('heroViewport');
+      const img      = document.getElementById('heroImg');
+      if (!wrapper || !viewport || !img) return;
+
+      let curr = 0, target = 0, rafId = null;
+      function computeTarget() {
+        const start = wrapper.getBoundingClientRect().top + window.scrollY;
+        const range = Math.max(1, viewport.offsetHeight);
+        const y = window.scrollY - start;
+        const pRaw = Math.min(Math.max(y / range, 0), 1);
+        target = Math.min(pRaw, 0.97);
+        tick();
+      }
+      function tick() {
+        if (rafId) return;
+        rafId = requestAnimationFrame(function animate() {
+          rafId = null;
+          curr += (target - curr) * 0.12;
+          if (Math.abs(target - curr) < 0.001) curr = target;
+          else rafId = requestAnimationFrame(animate);
+          img.style.objectPosition = `50% ${Math.round(curr * 100)}%`;
+        });
+      }
+      computeTarget();
+      window.addEventListener('scroll', computeTarget, { passive: true });
+      window.addEventListener('resize', computeTarget);
+    })();
+  </script>
+{% endblock %}
