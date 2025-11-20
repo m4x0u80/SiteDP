@@ -1027,17 +1027,17 @@ public function habElecShow(string $cat): Response
             ],
             'echafaudage' => [
                 'title'    => 'Échafaudage',
-                'subtitle' => 'Fixe / Roulant / Utilisation / Réception',
+                'subtitle' => 'De pied / Fixe',
                 'img'      => 'images/echafaudage.png',
             ],
             'hauteur' => [
                 'title'    => 'Travail en hauteur',
-                'subtitle' => 'Harnais, ancrages, déplacements…',
+                'subtitle' => 'Travail en hauteur / Port du harnais',
                 'img'      => 'images/harnais-de-securite.png',
             ],
             'elingage' => [
                 'title'    => 'Élingage',
-                'subtitle' => 'Choix des élingues, coefficients, gestes',
+                'subtitle' => 'Chef de manœuvre / Élingage',
                 'img'      => 'images/accrocher.png',
             ],
         ];
@@ -1047,26 +1047,125 @@ public function habElecShow(string $cat): Response
         ]);
     }
 
-    // SHOW : une seule route avec paramètre {cat}
     #[Route(
         '/prestations/securite/{cat}',
-        name: 'app_formations_securite_cat',
+        name: 'app_formations_securite_cat_index',
         requirements: ['cat' => 'sst|aipr|echafaudage|hauteur|elingage'],
         methods: ['GET']
     )]
-    public function securiteShow(string $cat): Response
+    public function securiteCatIndex(string $cat): Response
     {
-        $titles = [
-            'sst'         => 'SST – Sauveteur Secouriste du Travail',
-            'aipr'        => 'AIPR – Autorisation d’Intervention à Proximité des Réseaux',
-            'echafaudage' => 'Échafaudage – Montage, Utilisation, Réception',
-            'hauteur'     => 'Travail en hauteur – Harnais & déplacements',
-            'elingage'    => 'Élingage – Gestes & choix des accessoires',
+        $catalog = [
+            'sst' => [
+                'title' => 'SST',
+                'hero'  => 'images/hero_sst.jpg',
+                'subs'  => [
+                    'initial' => ['SST', 'images/rcr_bleu.png'],
+                    'mac'     => ['SST (MAC)',     'images/rcr_bleu.png'],
+                ],
+            ],
+            'aipr' => [
+                'title' => 'AIPR',
+                'hero'  => 'images/hero_aipr.jpg',
+                'subs'  => [
+                    'operateur'  => ['Opérateur',  'images/conduite-de-gaz.png'],
+                    'encadrant'  => ['Encadrant',  'images/conduite-de-gaz.png'],
+                    'concepteur' => ['Concepteur', 'images/conduite-de-gaz.png'],
+                ],
+            ],
+            'echafaudage' => [
+                'title' => 'Échafaudage',
+                'hero'  => 'images/hero_echafaudage.jpg',
+                'subs'  => [
+                    'echafaudage-de-pied' => ['Échafaudage de pied', 'images/echafaudage.png'],
+                    'echafaudage-fixe'    => ['Échafaudage fixe',    'images/echafaudage.png'],
+                ],
+            ],
+            'hauteur' => [
+                'title' => 'Travail en hauteur',
+                'hero'  => 'images/hero_hauteur.jpg',
+                'subs'  => [
+                    'travail-en-hauteur' => ['Travail en hauteur', 'images/harnais-de-securite.png'],
+                    'port-du-harnais'    => ['Port du harnais',    'images/harnais-de-securite.png'],
+                ],
+            ],
+            'elingage' => [
+                'title' => 'Élingage',
+                'hero'  => 'images/hero_elingage.jpg',
+                'subs'  => [
+                    'chef-de-manoeuvre' => ['Chef de manœuvre', 'images/accrocher.png'],
+                    'elingage'          => ['Élingage',         'images/accrocher.png'],
+                ],
+            ],
         ];
 
+        $family = $catalog[$cat] ?? null;
+        if (!$family) {
+            throw $this->createNotFoundException();
+        }
+
+        $cards = [];
+        foreach ($family['subs'] as $subSlug => [$label, $img]) {
+            $cards[] = [
+                'slug' => $subSlug,
+                'label'=> $label,
+                'img'  => $img,
+                'url'  => $this->generateUrl('app_formations_securite_show', ['cat' => $cat, 'sub' => $subSlug]),
+            ];
+        }
+
+        return $this->render('prestations/securite/cat_index.html.twig', [
+            'cat'    => $cat,
+            'title'  => $family['title'],
+            'hero'   => $family['hero'],
+            'cards'  => $cards,
+        ]);
+    }
+
+    #[Route(
+        '/prestations/securite/{cat}/{sub}',
+        name: 'app_formations_securite_show',
+        requirements: [
+            'cat' => 'sst|aipr|echafaudage|hauteur|elingage',
+            'sub' => '[a-z0-9\-]+'
+        ],
+        methods: ['GET']
+    )]
+    public function securiteShow(string $cat, string $sub): Response
+    {
+        $titles = [
+            'sst' => [
+                'initial' => 'SST – Initial',
+                'mac'     => 'SST – MAC (recyclage)',
+            ],
+            'aipr' => [
+                'operateur'  => 'AIPR – Opérateur',
+                'encadrant'  => 'AIPR – Encadrant',
+                'concepteur' => 'AIPR – Concepteur',
+            ],
+            'echafaudage' => [
+                'echafaudage-de-pied' => 'Échafaudage – De pied',
+                'echafaudage-fixe'    => 'Échafaudage – Fixe',
+            ],
+            'hauteur' => [
+                'travail-en-hauteur' => 'Travail en hauteur',
+                'port-du-harnais'    => 'Port du harnais',
+            ],
+            'elingage' => [
+                'chef-de-manoeuvre' => 'Élingage – Chef de manœuvre',
+                'elingage'          => 'Élingage – Pratique & sécurité',
+            ],
+        ];
+
+        $title = $titles[$cat][$sub] ?? null;
+        if (!$title) {
+            throw $this->createNotFoundException();
+        }
+
         return $this->render('prestations/securite/show.html.twig', [
-            'cat'   => $cat,                             // <-- toujours "cat"
-            'title' => $titles[$cat] ?? 'Sécurité',      // libellé propre
+            'cat'   => $cat,
+            'sub'   => $sub,
+            'title' => $title,
         ]);
     }
 
